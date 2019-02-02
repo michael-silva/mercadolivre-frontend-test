@@ -10,7 +10,10 @@ import Breadcrumb from './Breadcrumb';
 class App extends Component {
   constructor() {
     super();
-    this.state = { term: '', steps: ['Categoria', 'Produto', 'Teste'] };
+    this.state = { term: '', steps: ['Categoria', 'Produto', 'Teste 2'] };
+    //testing api
+    fetch(`/api/items?q=ipod`)
+      .then(results => console.log(results));
   }
   render() {
     const { term, steps } = this.state;
