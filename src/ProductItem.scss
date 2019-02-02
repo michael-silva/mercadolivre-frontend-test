@@ -1,0 +1,67 @@
+@import './Shared.scss';
+
+.product-item {
+  display: flex;
+  padding: $smMargin 0;
+  position: relative;
+  &::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 3%;
+    height: 1px;
+    width: 94%;
+    background-color: $mlLightGray;
+  }
+  >.picturebox {
+    width: 180px;
+    height: 180px;
+    border-radius: 4px;
+    margin: 0 $smMargin;
+    overflow: hidden;
+    display: flex;
+    >.image {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+      height: auto;
+      width:auto;
+      margin: auto;
+    }
+  }
+  >.content {
+    width: 100%;
+    >.name {
+      margin: 0;
+      font-size: 18px;
+    }
+    >.extra {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+}
+
+.product-item-header {
+  margin-top: $smMargin;
+  margin-bottom: $lgMargin;
+  >.icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 12px;
+  }
+  >.price {
+    font-size: 24px;
+    margin: 0;
+  }
+  >.state {
+    display: block;
+    float: right;
+    font-size: 12px;
+    line-height: 24px;
+    color: $mlMediumGray;
+    margin: 0;
+    width: calc(#{$gridRowHeight * 2} - 1rem);
+  }
+}

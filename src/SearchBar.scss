@@ -1,0 +1,57 @@
+@import './Shared.scss';
+
+.header-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: $mlYellow;
+}
+
+.header-content {
+  >.logo {
+    align-items: center;
+    display: flex;
+    padding-right: 0;
+    >.image {
+      padding: 8px;
+    }
+  }
+  >.search {
+    padding-left: 0;
+  }
+}
+
+.search-form {
+  margin: 8px 0;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  >.button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 8px 12px;
+    background-color: $mlLightGray;
+    border: none;
+    >.icon {
+      width: 18px;
+      height: 18px;
+    }
+  }
+  >.input {
+    font-size: 18px;
+    color: $mlMediumGray;
+    display: inline-block;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    &::placeholder {
+      color: $mlMediumGray;
+    }
+    &:focus {
+      outline: $mlLightGray;
+    }
+  }
+}

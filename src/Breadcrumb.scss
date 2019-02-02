@@ -1,0 +1,20 @@
+@import './Shared.scss';
+
+.breadcrumb-container {
+  margin-bottom: -1rem;
+  padding: $smMargin 0;
+  >.step {
+    display: inline-block;
+    color: $mlMediumGray;
+    &::after {
+      content: ' > ';
+      display: inline-block;
+    }
+    &:last-child::after {
+      display: none;
+    }
+    &:last-child {
+      color: $mlDarkGray;
+    }
+  }
+}

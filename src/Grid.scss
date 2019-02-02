@@ -1,0 +1,43 @@
+@import './Shared.scss';
+
+.container {
+  max-width: $pageWidth;
+  width: 100%;
+  margin: auto;
+}
+
+.row-block {
+  height: calc(#{$gridRowHeight} - 1rem);
+  padding-bottom: 1rem;
+  &.-last {
+    padding-bottom: 0;
+  }
+  &.-bottom {
+    align-items: flex-end;
+  }
+  &.-top {
+    align-items: flex-start;
+  }
+}
+
+@for $i from 1 through $gridRows {
+  .row-block-#{$i} {
+    height: calc((#{$i * $gridRowHeight}) - 1rem);
+    padding-bottom: 1rem;
+    &.-last {
+      padding-bottom: 0;
+    }
+    &.-bottom {
+      align-items: flex-end;
+    }
+    &.-top {
+      align-items: flex-start;
+    }
+  }
+}
+
+@for $i from 1 through $gridRows {
+  .row-offset-#{$i} {
+    margin-top: calc((#{$i * $gridRowHeight}) - .5rem);
+  }
+}
