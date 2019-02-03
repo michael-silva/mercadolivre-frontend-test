@@ -1,8 +1,8 @@
 import React from "react";
-import shippingIcon from './Assets/ic_shipping.png';
-import shippingIcon2x from './Assets/ic_shipping@2x.png.png';
+import shippingIcon from '../assets/ic_shipping.png';
+import shippingIcon2x from '../assets/ic_shipping@2x.png.png';
 
-import './ProductItem.scss';
+import '../styles/ProductItem.scss';
 
 const ProductItem = ({ product }) => (
   <li className="product-item">

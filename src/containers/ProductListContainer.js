@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import ProductList from "./ProductList";
+import ProductList from "../components/ProductList";
 
 class ProductListContainer extends Component {
   constructor() {

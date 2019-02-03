@@ -1,10 +1,10 @@
 import React from "react";
-import logo from './Assets/Logo_ML.png';
-import logo2x from './Assets/Logo_ML@2x.png.png';
-import searchIcon from './Assets/ic_Search.png';
-import searchIcon2x from './Assets/ic_Search@2x.png.png';
+import logo from '../assets/Logo_ML.png';
+import logo2x from '../assets/Logo_ML@2x.png.png';
+import searchIcon from '../assets/ic_Search.png';
+import searchIcon2x from '../assets/ic_Search@2x.png.png';
 
-import './SearchBar.scss';
+import '../styles/SearchBar.scss';
 
 const SearchBar = ({ term, onChange }) => (
   <header className="header-bar">

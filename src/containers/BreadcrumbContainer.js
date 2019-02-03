@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import Breadcrumb from "./Breadcrumb";
+import Breadcrumb from "../components/Breadcrumb";
 
 class BreadcrumbContainer extends Component {
   constructor() {

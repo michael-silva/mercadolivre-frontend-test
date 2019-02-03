@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import './App.scss';
+import './styles/App.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SearchBar from './SearchBar';
-import ProductListContainer from './ProductListContainer';
-import ProductDetailContainer  from './ProductDetailContainer';
-import BreadcrumbContainer from './BreadcrumbContainer';
+import SearchBar from './components/SearchBar';
+import ProductListContainer from './containers/ProductListContainer';
+import ProductDetailContainer  from './containers/ProductDetailContainer';
+import BreadcrumbContainer from './containers/BreadcrumbContainer';
 
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { term: '', steps: ['Categoria', 'Produto', 'Teste 2'] };
+    this.state = { term: '' };
   }
   render() {
-    const { term, steps } = this.state;
+    const { term } = this.state;
     //render={(props) => <UserPage {...props} />}
     return (
       <Router>
@@ -21,7 +21,7 @@ class App extends Component {
           <SearchBar term={term} onChange={(term) => this.setState({ term })}></SearchBar>
           <div className="row row-block -bottom">
             <div className="col-sm-offset-1 col-sm-10">
-              <BreadcrumbContainer steps={steps}></BreadcrumbContainer>
+              <BreadcrumbContainer></BreadcrumbContainer>
             </div>
           </div>
           <div className="row">

@@ -1,7 +1,7 @@
 import React from "react";
-import ProductItem from "./ProductItem";
+import ProductItem from "../components/ProductItem";
 
-import './ProductList.scss';
+import '../styles/ProductList.scss';
 
 const ProductList = ({ products }) => (
   <div className="page-card">

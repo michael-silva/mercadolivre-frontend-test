@@ -1,6 +1,6 @@
 import React from "react";
 
-import './ProductDetail.scss';
+import '../styles/ProductDetail.scss';
 
 const ProductDetail = ({ product }) => (
   <div className="page-card">

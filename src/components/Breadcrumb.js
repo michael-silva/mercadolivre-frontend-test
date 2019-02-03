@@ -1,6 +1,6 @@
 import React from "react";
 
-import './Breadcrumb.scss';
+import '../styles/Breadcrumb.scss';
 
 const Breadcrumb = ({ path }) => (
   <ul className="breadcrumb-container">
