@@ -3,12 +3,11 @@ import ProductItem from "./ProductItem";
 
 import './ProductList.scss';
 
-//TODO: remove null products validation
 const ProductList = ({ products }) => (
   <div className="page-card">
     <ul className="product-list">
-      {(products || [{}, {}, {}]).map((product) =>
-        <ProductItem {...product}></ProductItem>
+      {products.map((product, id) =>
+        <ProductItem key={id} product={product}></ProductItem>
       )}
     </ul>
   </div>

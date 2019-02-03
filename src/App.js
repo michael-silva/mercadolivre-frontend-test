@@ -2,18 +2,15 @@ import React, { Component } from 'react';
 import './App.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import SearchBar from './SearchBar';
-import ProductList from './ProductList';
-import ProductDetail from './ProductDetail';
-import Breadcrumb from './Breadcrumb';
+import ProductListContainer from './ProductListContainer';
+import ProductDetailContainer  from './ProductDetailContainer';
+import BreadcrumbContainer from './BreadcrumbContainer';
 
 
 class App extends Component {
   constructor() {
     super();
     this.state = { term: '', steps: ['Categoria', 'Produto', 'Teste 2'] };
-    //testing api
-    fetch(`/api/items?q=ipod`)
-      .then(results => console.log(results));
   }
   render() {
     const { term, steps } = this.state;
@@ -24,14 +21,14 @@ class App extends Component {
           <SearchBar term={term} onChange={(term) => this.setState({ term })}></SearchBar>
           <div className="row row-block -bottom">
             <div className="col-sm-offset-1 col-sm-10">
-              <Breadcrumb steps={steps}></Breadcrumb>
+              <BreadcrumbContainer steps={steps}></BreadcrumbContainer>
             </div>
           </div>
           <div className="row">
             <div className="col-sm-offset-1 col-sm-10">
-              <Route exact path="/" component={ProductList} />
-              <Route exact path="/items" component={ProductList} />
-              <Route path="/items/:id" component={ProductDetail} />
+              <Route exact path="/" component={ProductListContainer} />
+              <Route exact path="/items" component={ProductListContainer} />
+              <Route path="/items/:id" component={ProductDetailContainer} />
             </div>
           </div>
         </div>
