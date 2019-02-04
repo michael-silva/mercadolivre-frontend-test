@@ -13,7 +13,7 @@ const SearchBar = ({ query, onSearch, onChange }) => (
         <div className="logo col-sm-offset-1 col-sm-1">
           <img src={logo} srcSet={`${logo2x} 2x`} className="image" alt="Mercado Livre" />
         </div>
-        <div className="col-sm-9 search">
+        <div className="col-xs-10 col-sm-9 search">
           <form className="search-form" onSubmit={onSearch}>
             <input className="input" placeholder="Nunca deixe de procurar" value={query} onChange={onChange} autoFocus />
             <button type="submit" className="button"><img src={searchIcon} srcSet={`${searchIcon2x} 2x`} className="icon" alt="Ícone de busca" /></button>

@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/App.scss';
+import '../styles/App.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import ProductListContainer from '../containers/ProductListContainer';
 import ProductDetailContainer from '../containers/ProductDetailContainer';

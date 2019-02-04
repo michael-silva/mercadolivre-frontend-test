@@ -33,8 +33,10 @@
   >.content {
     width: 100%;
     >.name {
+      display: block;
       margin: 0;
       font-size: 18px;
+      width: calc(100% - #{$gridRowHeight * 3});
     }
     >.extra {
       margin: 0;
@@ -50,10 +52,6 @@
     width: 24px;
     height: 24px;
     margin-left: 12px;
-  }
-  >.price {
-    font-size: 24px;
-    margin: 0;
   }
   >.price {
     font-size: 24px;

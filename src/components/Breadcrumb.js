@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import '../styles/Breadcrumb.scss';
 
@@ -9,5 +10,9 @@ const Breadcrumb = ({ path }) => (
     )}
   </ul> 
 );
+
+Breadcrumb.propTypes = {
+  path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+};
 
 export default Breadcrumb;

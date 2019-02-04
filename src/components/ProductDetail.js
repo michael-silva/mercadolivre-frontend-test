@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import '../styles/ProductDetail.scss';
 
@@ -31,5 +32,9 @@ const ProductDetail = ({ product }) => (
     </div>
   </div>
 );
+
+ProductDetail.propTypes = {
+  product: PropTypes.object.isRequired,
+};
 
 export default ProductDetail;

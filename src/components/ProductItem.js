@@ -19,13 +19,23 @@ const ProductItem = ({ product, onClick }) => (
         <span className="state">{product.state}</span>
       </h2>
       <h1 className="name">{product.title}</h1>
-      <h3 className="extra">Completo único</h3>
     </div>
   </li>
 );
 
-/*ProductItem.propTypes = {
+ProductItem.propTypes = {
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    free_shipping: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    state: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    price: PropTypes.shape({ 
+      amount_label: PropTypes.string.isRequired,
+      decimals_label: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   onClick: PropTypes.func.isRequired,
-}*/
+};
 
 export default ProductItem;

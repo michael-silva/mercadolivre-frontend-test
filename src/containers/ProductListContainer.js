@@ -8,6 +8,7 @@ import CurrencyService from '../shared/CurrencyService';
 export class ProductListContainer extends Component {
   constructor() {
     super();
+    this.state = { products: [] };
     this.currencyService = new CurrencyService();
   }
 
@@ -33,7 +34,7 @@ export class ProductListContainer extends Component {
   }
 
   render() {
-    let { products } = this.props;
+    let { products } = this.state;
     return products.length > 0 
       ? <ProductList itemClick={this.navigate.bind(this)} products={products}></ProductList> 
       : <></>;

@@ -1,17 +1,17 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ##steps
-Remover o Completo unico
 Melhorar Navegação para detalhes de produtos
 Formtara o preço no front
 Espaço quebra a busca
+titlo e favicon
+Rever SEO, navegar no historico não atualiza
+escrever readme
 
 extras
 refatorar codigo
 problema de cache nas imagens
 loading e error state
-tipar input
-escrever readme
 
 ## Available Scripts
 

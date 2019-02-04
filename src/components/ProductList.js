@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProductItem from "../components/ProductItem";
 
 import '../styles/ProductList.scss';
@@ -13,17 +14,9 @@ const ProductList = ({ products, itemClick }) => (
   </div>
 );
 
-/*
-TodoList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      completed: PropTypes.bool.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired
-  ).isRequired,
-  toggleTodo: PropTypes.func.isRequired
-}
-*/
+ProductList.propTypes = {
+  products: PropTypes.array.isRequired,
+  itemClick: PropTypes.func.isRequired
+};
 
 export default ProductList;
