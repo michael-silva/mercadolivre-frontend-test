@@ -2,10 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ##steps
 melhorar coverage dos testes unitários
-importar actions from index.js e remover null dos redux connect
 Remover o Completo unico
 Melhorar Navegação para detalhes de produtos
 Formtara o preço no front
+Espaço quebra a busca
+ajustar App.js
 
 extras
 refatorar codigo

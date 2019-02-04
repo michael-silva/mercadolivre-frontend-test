@@ -5,7 +5,7 @@ import searchAction from '../actions/searchAction';
 import changeQueryAction from '../actions/changeQueryAction';
 import SearchBar from "../components/SearchBar";
 
-class SearchBarContainer extends Component {
+export class SearchBarContainer extends Component {
   componentDidMount() {
     const params = new URLSearchParams(this.props.location.search);
     const query = params.get('q') || '';

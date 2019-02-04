@@ -5,12 +5,13 @@ import getProductAction from '../actions/getProductAction';
 import ProductDetail from "../components/ProductDetail";
 import CurrencyService from '../shared/CurrencyService';
 
-class ProductDetailContainer extends Component {
+export class ProductDetailContainer extends Component {
   constructor() {
     super();
     this.state = { product: null };
     this.currencyService = new CurrencyService();
   }
+
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.dispatch(getProductAction(id));

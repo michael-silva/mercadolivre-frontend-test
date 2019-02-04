@@ -5,7 +5,7 @@ import changeQueryAction from '../actions/changeQueryAction';
 import ProductList from "../components/ProductList";
 import CurrencyService from '../shared/CurrencyService';
 
-class ProductListContainer extends Component {
+export class ProductListContainer extends Component {
   constructor() {
     super();
     this.currencyService = new CurrencyService();

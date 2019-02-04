@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import getCategoryAction from '../actions/getCategoryAction'
+import getCategoryAction from '../actions/getCategoryAction';
 import Breadcrumb from "../components/Breadcrumb";
 
-class BreadcrumbContainer extends Component {
+export class BreadcrumbContainer extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     const { category, dispatch } = this.props;
     if (prevProps.category !== category) {
