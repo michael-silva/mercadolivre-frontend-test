@@ -1,3 +1,8 @@
+export const CONDITIONS = {
+  new: 'Nuevo',
+  used: 'Usado'
+}
+
 const constants = {
   CHANGE_QUERY: 'CHANGE_QUERY',
   PRODUCT_GET_SUCCESS: 'PRODUCT_GET_SUCCESS',

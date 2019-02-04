@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
+import { CONDITIONS } from '../constants';
 import getProductAction from '../actions/getProductAction';
 import ProductDetail from "../components/ProductDetail";
 import CurrencyService from '../shared/CurrencyService';
@@ -29,7 +30,7 @@ export class ProductDetailContainer extends Component {
     product.price.amount_label = this.currencyService.formatAmount(originalProduct.price.currency, originalProduct.price.amount);
     const decimalsString = originalProduct.price.decimals.toString();
     product.price.decimals_label = decimalsString.length === 1 ? `${decimalsString}0` : decimalsString;
-    product.condition_label = originalProduct.condition === 'new' ? 'Nuevo' : 'Usado';
+    product.condition_label = CONDITIONS[originalProduct.condition];
     product.description = originalProduct.description.replace(/\n/gm, '<br />');
     return product;
   }
