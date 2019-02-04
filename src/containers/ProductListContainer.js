@@ -1,25 +1,29 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import { connect } from "react-redux";
+import changeQueryAction from '../actions/changeQueryAction';
 import ProductList from "../components/ProductList";
 
 class ProductListContainer extends Component {
-  constructor() {
-    super();
-    this.state = { products: [] };
-  }
-
-  componentDidMount() {
-    axios.get(`/api/items?q=ipod`)
-      .then(res => {
-        const products = res.data.items;
-        this.setState({ products });
-      })
+  navigate(product) {
+    const { history, dispatch } = this.props;
+    history.push(`/items/${product.id}`);
+    dispatch(changeQueryAction(''));
   }
 
   render() {
-    const { products } = this.state;
-    return <ProductList products={products}></ProductList>
+    let { products } = this.props;
+    return products.length > 0 
+      ? <ProductList itemClick={this.navigate.bind(this)} products={products}></ProductList> 
+      : <></>;
   }
 }
 
-export default ProductListContainer;
+const mapStateToProps = state => ({
+  products: state.products.items
+})
+
+
+export default connect(
+  mapStateToProps
+)(withRouter(ProductListContainer));

@@ -1,25 +1,29 @@
 import React, { Component } from "react";
-import axios from 'axios';
+import { connect } from "react-redux";
+import getCategoryAction from '../actions/getCategoryAction'
 import Breadcrumb from "../components/Breadcrumb";
 
 class BreadcrumbContainer extends Component {
-  constructor() {
-    super();
-    this.state = { path: [] };
-  }
-
-  componentDidMount() {
-    axios.get(`/api/categories/MLA32321`)
-      .then(res => {
-        const path = res.data.path;
-        this.setState({ path });
-      })
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { category, dispatch } = this.props;
+    if (prevProps.category !== category) {
+        dispatch(getCategoryAction(category));
+    }
   }
 
   render() {
-    const { path } = this.state;
-    return <Breadcrumb path={path}></Breadcrumb>
+    const { path } = this.props;
+    return path.length > 0 ? <Breadcrumb path={path}></Breadcrumb> : <></>;
   }
 }
 
-export default BreadcrumbContainer;
+const mapStateToProps = state => ({
+  category: state.products.categories[0],
+  path: state.breadcrumb.path,
+});
+
+
+export default connect(
+  mapStateToProps
+)(BreadcrumbContainer);
+

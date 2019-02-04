@@ -34,6 +34,7 @@ function mapApiResultToProduct(product, description) {
   if (product.pictures.length > 0) {
     item.picture = product.pictures[0].url;
   }
+  item.category = product.category_id;
   item.sold_quantity =  product.sold_quantity;
   item.description = description.plain_text;
   return item;

@@ -55,6 +55,15 @@
     font-size: 24px;
     margin: 0;
   }
+  >.price {
+    font-size: 24px;
+    margin: 0;
+    display: flex;
+    >.cents {
+     font-size: 12px;
+     margin-left: 8px;
+    }
+  }
   >.state {
     display: block;
     float: right;

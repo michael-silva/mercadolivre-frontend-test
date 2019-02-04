@@ -12,9 +12,9 @@ const ProductDetail = ({ product }) => (
       </div>
       <div className="col-sm-4">
         <div className="product-details">
-          <p className="headline">{product.condition === 'new' ? 'Novo' : 'Usado'} - {product.sold_quantity} vendidos</p>
+          <p className="headline">{product.condition_label} - {product.sold_quantity} vendidos</p>
           <h1 className="name">{product.title}</h1>
-          <h2 className="price">R$ {product.price.amount},{product.price.decimals}</h2>
+          <h2 className="price">{product.price.amount_label} <span className="cents">{product.price.decimals_label}</span></h2>
           <button className="button">Comprar</button>
         </div>
       </div>
@@ -25,7 +25,7 @@ const ProductDetail = ({ product }) => (
           <div className="header">
             <h1 className="title">Descrição do produto</h1>
           </div>
-          <p className="description">{product.description}</p>
+          <p className="description" dangerouslySetInnerHTML={{__html: product.description}}></p>
         </div>
       </div>
     </div>

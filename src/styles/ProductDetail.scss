@@ -22,6 +22,11 @@
      font-size: 46px;
      line-height: 1;
      margin: 0 0 $lgMargin 0;
+     display: flex;
+     >.cents {
+      font-size: 23px;
+      margin-left: 8px;
+     }
    }
    >.button {
      cursor: pointer;

@@ -6,7 +6,7 @@ import searchIcon2x from '../assets/ic_Search@2x.png.png';
 
 import '../styles/SearchBar.scss';
 
-const SearchBar = ({ term, onChange }) => (
+const SearchBar = ({ query, onSearch, onChange }) => (
   <header className="header-bar">
     <div className="container">
       <div className="row header-content">
@@ -14,9 +14,9 @@ const SearchBar = ({ term, onChange }) => (
           <img src={logo} srcSet={`${logo2x} 2x`} className="image" alt="Mercado Livre" />
         </div>
         <div className="col-sm-9 search">
-          <form className="search-form">
-            <input className="input" placeholder="Nunca deixe de procurar" value={term} onChange={(e) => onChange(e.target.value, term)} />
-            <button className="button"><img src={searchIcon} srcSet={`${searchIcon2x} 2x`} className="icon" alt="Ícone de busca" /></button>
+          <form className="search-form" onSubmit={onSearch}>
+            <input className="input" placeholder="Nunca deixe de procurar" value={query} onChange={onChange} autoFocus />
+            <button type="submit" className="button"><img src={searchIcon} srcSet={`${searchIcon2x} 2x`} className="icon" alt="Ícone de busca" /></button>
           </form>
         </div>
       </div>

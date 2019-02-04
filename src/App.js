@@ -1,24 +1,22 @@
 import React, { Component } from 'react';
 import './styles/App.scss';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import SearchBar from './components/SearchBar';
 import ProductListContainer from './containers/ProductListContainer';
 import ProductDetailContainer  from './containers/ProductDetailContainer';
 import BreadcrumbContainer from './containers/BreadcrumbContainer';
+import SearchBarContainer from './containers/SearchBarContainer';
 
 
 class App extends Component {
   constructor() {
     super();
-    this.state = { term: '' };
   }
   render() {
-    const { term } = this.state;
     //render={(props) => <UserPage {...props} />}
     return (
       <Router>
         <div className="container">
-          <SearchBar term={term} onChange={(term) => this.setState({ term })}></SearchBar>
+          <SearchBarContainer></SearchBarContainer>
           <div className="row row-block -bottom">
             <div className="col-sm-offset-1 col-sm-10">
               <BreadcrumbContainer></BreadcrumbContainer>

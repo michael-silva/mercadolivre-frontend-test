@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import shippingIcon from '../assets/ic_shipping.png';
 import shippingIcon2x from '../assets/ic_shipping@2x.png.png';
 
 import '../styles/ProductItem.scss';
 
-const ProductItem = ({ product }) => (
-  <li className="product-item">
+const ProductItem = ({ product, onClick }) => (
+  <li className="product-item" onClick={onClick}>
     <div className="picturebox">
       <img className="image" src={product.picture} alt="Imagem do produto" />
     </div>
@@ -22,5 +23,9 @@ const ProductItem = ({ product }) => (
     </div>
   </li>
 );
+
+/*ProductItem.propTypes = {
+  onClick: PropTypes.func.isRequired,
+}*/
 
 export default ProductItem;

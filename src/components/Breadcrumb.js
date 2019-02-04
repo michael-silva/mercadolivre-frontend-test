@@ -4,8 +4,8 @@ import '../styles/Breadcrumb.scss';
 
 const Breadcrumb = ({ path }) => (
   <ul className="breadcrumb-container">
-    {path.map((step) =>
-      <li className="step">&nbsp;{step}&nbsp;</li>
+    {path.map((step, i) =>
+      <li key={i} className="step">&nbsp;{step}&nbsp;</li>
     )}
   </ul> 
 );
