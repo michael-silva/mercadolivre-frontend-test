@@ -3,31 +3,13 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import getProductAction from '../actions/getProductAction';
 import ProductDetail from "../components/ProductDetail";
-
-const currency_symbols = {
-  'USD': '$', // US Dollar
-  'EUR': '€', // Euro
-  'CRC': '₡', // Costa Rican Colón
-  'GBP': '£', // British Pound Sterling
-  'ILS': '₪', // Israeli New Sheqel
-  'INR': '₹', // Indian Rupee
-  'JPY': '¥', // Japanese Yen
-  'KRW': '₩', // South Korean Won
-  'NGN': '₦', // Nigerian Naira
-  'PHP': '₱', // Philippine Peso
-  'PLN': 'zł', // Polish Zloty
-  'PYG': '₲', // Paraguayan Guarani
-  'THB': '฿', // Thai Baht
-  'UAH': '₴', // Ukrainian Hryvnia
-  'VND': '₫', // Vietnamese Dong
-  'ARS': '$', // Peso Argentino
-};
-
+import CurrencyService from '../shared/CurrencyService';
 
 class ProductDetailContainer extends Component {
   constructor() {
     super();
     this.state = { product: null };
+    this.currencyService = new CurrencyService();
   }
   componentDidMount() {
     const { id } = this.props.match.params;
@@ -43,8 +25,9 @@ class ProductDetailContainer extends Component {
 
   formatProduct(originalProduct) {
     const product = { ...originalProduct };
-    product.price.amount_label = `${currency_symbols[originalProduct.price.currency]} ${originalProduct.price.amount}`;
-    product.price.decimals_label = originalProduct.price.decimals;
+    product.price.amount_label = `${this.currencyService.getSymbol(originalProduct.price.currency)} ${originalProduct.price.amount}`;
+    const decimalsString = originalProduct.price.decimals.toString();
+    product.price.decimals_label = decimalsString.length === 1 ? `${decimalsString}0` : decimalsString;
     product.condition_label = originalProduct.condition === 'new' ? 'Nuevo' : 'Usado';
     product.description = originalProduct.description.replace(/\n/gm, '<br />');
     return product;

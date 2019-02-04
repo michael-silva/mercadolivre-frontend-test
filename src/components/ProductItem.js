@@ -12,7 +12,7 @@ const ProductItem = ({ product, onClick }) => (
     </div>
     <div className="content">
       <h2 className="product-item-header">
-        <span className="price">R$ {product.price.amount},{product.price.decimals}</span>
+        <span className="price">{product.price.amount_label} <span className="cents">{product.price.decimals_label}</span></span>
         {product.free_shipping 
           ? <span className="icon"><img className="image" src={shippingIcon} srcSet={`${shippingIcon2x} 2x`} alt="Entrega grátis" /></span>
           : <></>}

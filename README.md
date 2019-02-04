@@ -1,5 +1,19 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+##steps
+melhorar coverage dos testes unitários
+importar actions from index.js e remover null dos redux connect
+Remover o Completo unico
+Melhorar Navegação para detalhes de produtos
+Formtara o preço no front
+
+extras
+refatorar codigo
+problema de cache nas imagens
+loading e error state
+tipar input
+escrever readme
+
 ## Available Scripts
 
 In the project directory, you can run:
