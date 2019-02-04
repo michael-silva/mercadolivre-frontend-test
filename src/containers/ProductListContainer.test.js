@@ -34,11 +34,12 @@ describe('ProductListContainer', () => {
   });
 
   it('Should render product list if path is not empty', () => {
-    const products = [{ id: '123', price: { }}, { id: '223', price: { } }];
+    const products = [{ id: '123', price: { amount: 1, decimals: 0 }}, { id: '223', price: { amount: 1, decimals: 0 } }];
     const wrapper = mount(
-      <ProductListContainer products={products} />
+      <ProductListContainer products={[]} />
     );
 
+    wrapper.setProps({ products });
     wrapper.instance().forceUpdate();
     wrapper.update();
 

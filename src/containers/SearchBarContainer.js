@@ -12,15 +12,16 @@ export class SearchBarContainer extends Component {
     if (query.length > 0) {
       const { onSearch, onChange } = this.props;
       onChange(query);
-      onSearch(query);
+      onSearch(encodeURI(query));
     }
   }
 
   searchHandler(e) {
     e.preventDefault();
     const { history, query, onSearch } = this.props;
-    history.push(`/items?q=${query}`);
-    onSearch(query);
+    const text = encodeURI(query);
+    history.push(`/items?q=${text}`);
+    onSearch(text);
   }
 
   render() {
