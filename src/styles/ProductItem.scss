@@ -4,6 +4,12 @@
   display: flex;
   padding: $smMargin 0;
   position: relative;
+  cursor: pointer;
+  &:hover {
+    >.content>.name {
+      text-decoration: underline;
+    }
+  }
   &::after {
     content: '';
     display: block;
