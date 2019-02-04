@@ -2,7 +2,7 @@
 import constants from '../constants';
 import axios from 'axios';
 
-const searchSuccessAction = (items, categories) => {
+export const searchSuccessAction = (items, categories) => {
   return {
     type: constants.PRODUCT_SEARCH_SUCCESS,
     categories,
@@ -10,14 +10,14 @@ const searchSuccessAction = (items, categories) => {
   };
 };
 
-const searchErrorAction = (error) => {
+export const searchErrorAction = (error) => {
   return {
     type: constants.PRODUCT_SEARCH_ERROR,
     error,
   };
 };
 
-const searchActionAsync = (query) => {
+export const searchActionAsync = (query) => {
   return (dispatch, getState) => {
     return axios.get(`/api/items?q=${query}`)
       .then(res => {
