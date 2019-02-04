@@ -3,7 +3,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ##steps
 Melhorar Navegação para detalhes de produtos
 Formtara o preço no front
-Espaço quebra a busca
 titlo e favicon
 Rever SEO, navegar no historico não atualiza
 escrever readme

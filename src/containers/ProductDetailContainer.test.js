@@ -8,7 +8,7 @@ describe('ProductDetailContainer', () => {
 
   it('Should format product item to view model', () => {
     const product = { id: '123', description: 'Testes\ntetes\n', condition: 'new', price: { amount: 1234, currency: 'USD', decimals: 0 } };
-    const productFormated = { id: '123', description: 'Testes<br />tetes<br />', condition: 'new', condition_label: 'Nuevo', price: { amount: 1234, amount_label: '$ 1234', currency: 'USD', decimals: 0, decimals_label: '00' } };
+    const productFormated = { id: '123', description: 'Testes<br />tetes<br />', condition: 'new', condition_label: 'Nuevo', price: { amount: 1234, amount_label: '$ 1,234', currency: 'USD', decimals: 0, decimals_label: '00' } };
     const match = { params: { id: '123' } };
     const mockDispatch = jest.fn();
 

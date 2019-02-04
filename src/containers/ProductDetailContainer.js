@@ -26,7 +26,7 @@ export class ProductDetailContainer extends Component {
 
   formatProduct(originalProduct) {
     const product = { ...originalProduct };
-    product.price.amount_label = `${this.currencyService.getSymbol(originalProduct.price.currency)} ${originalProduct.price.amount}`;
+    product.price.amount_label = this.currencyService.formatAmount(originalProduct.price.currency, originalProduct.price.amount);
     const decimalsString = originalProduct.price.decimals.toString();
     product.price.decimals_label = decimalsString.length === 1 ? `${decimalsString}0` : decimalsString;
     product.condition_label = originalProduct.condition === 'new' ? 'Nuevo' : 'Usado';
