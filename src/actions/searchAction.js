@@ -19,7 +19,7 @@ const searchErrorAction = (error) => {
 
 const searchActionAsync = (query) => {
   return (dispatch, getState) => {
-    axios.get(`/api/items?q=${query}`)
+    return axios.get(`/api/items?q=${query}`)
       .then(res => {
         const items = res.data.items;
         const categories = res.data.categories;

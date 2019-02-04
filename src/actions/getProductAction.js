@@ -17,7 +17,7 @@ const getProductErrorAction = (error) => {
 
 const getProductActionAsync = (id) => {
   return (dispatch, getState) => {
-    axios.get(`/api/items/${id}`)
+    return axios.get(`/api/items/${id}`)
       .then(res => {
         const item = res.data.item;
         dispatch(getProductSuccessAction(item));

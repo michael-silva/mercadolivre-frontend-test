@@ -18,7 +18,7 @@ const getCategoryErrorAction = (error) => {
 
 const getCategoryActionAsync = (id) => {
   return (dispatch, getState) => {
-    axios.get(`/api/categories/${id}`)
+    return axios.get(`/api/categories/${id}`)
       .then(res => {
         const { path } = res.data;
         dispatch(getCategorySuccessAction(path));

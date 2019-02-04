@@ -1,15 +1,14 @@
-import searchAction from './searchAction';
+import getProductAction from './getProductAction';
 import constants from '../constants';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import moxios from 'moxios';
 
-const items = [{}, {}, {}];
-const categories = [{}, {}];
+const item = { category: 'category' };
 
 const mockStore = configureMockStore([ thunk ]);
 
-describe('SearchAction', () => {
+describe('getProductAction', () => {
 
   beforeEach(function () {
     moxios.install();
@@ -19,28 +18,28 @@ describe('SearchAction', () => {
     moxios.uninstall();
   });
 
-  it('creates SEARCH_PRODUCTS_SUCCESS after successfuly fetching products', () => {
+  it('creates PRODUCT_GET_SUCCESS after successfuly fetching one product', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: { items, categories },
+        response: { item },
       });
     });
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_SUCCESS, items, categories };
+    const expectedAction = { type: constants.PRODUCT_GET_SUCCESS, item };
 
-    const query = 'test';
-    const store = mockStore({ products: [] });
+    const id = '123';
+    const store = mockStore({ });
 
-    return store.dispatch(searchAction(query))
+    return store.dispatch(getProductAction(id))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual(expectedAction);
       });
   });
 
-  it('creates SEARCH_PRODUCTS_ERROR after erroring fetching products', () => {
+  it('creates PRODUCT_GET_ERROR after erroring fetching products', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -49,12 +48,12 @@ describe('SearchAction', () => {
       });
     });
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_ERROR, error: new Error('Request failed with status code 500') };
+    const expectedAction = { type: constants.PRODUCT_GET_ERROR, error: new Error('Request failed with status code 500') };
 
-    const query = 'test';
+    const id = '122';
     const store = mockStore({ products: [] });
   
-    return store.dispatch(searchAction(query))
+    return store.dispatch(getProductAction(id))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual(expectedAction);

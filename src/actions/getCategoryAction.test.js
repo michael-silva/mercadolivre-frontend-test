@@ -1,15 +1,14 @@
-import searchAction from './searchAction';
+import getCategoryAction from './getCategoryAction';
 import constants from '../constants';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
 import moxios from 'moxios';
 
-const items = [{}, {}, {}];
-const categories = [{}, {}];
+const path = ['test', 'test'];
 
 const mockStore = configureMockStore([ thunk ]);
 
-describe('SearchAction', () => {
+describe('getCategoryAction', () => {
 
   beforeEach(function () {
     moxios.install();
@@ -19,28 +18,28 @@ describe('SearchAction', () => {
     moxios.uninstall();
   });
 
-  it('creates SEARCH_PRODUCTS_SUCCESS after successfuly fetching products', () => {
+  it('creates BREADCRUMB_SUCCESS after successfuly fetching one product', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
         status: 200,
-        response: { items, categories },
+        response: { path },
       });
     });
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_SUCCESS, items, categories };
+    const expectedAction = { type: constants.BREADCRUMB_SUCCESS, path };
 
-    const query = 'test';
-    const store = mockStore({ products: [] });
+    const id = '123';
+    const store = mockStore({ });
 
-    return store.dispatch(searchAction(query))
+    return store.dispatch(getCategoryAction(id))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual(expectedAction);
       });
   });
 
-  it('creates SEARCH_PRODUCTS_ERROR after erroring fetching products', () => {
+  it('creates BREADCRUMB_ERROR after erroring fetching products', () => {
     moxios.wait(() => {
       const request = moxios.requests.mostRecent();
       request.respondWith({
@@ -49,12 +48,12 @@ describe('SearchAction', () => {
       });
     });
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_ERROR, error: new Error('Request failed with status code 500') };
+    const expectedAction = { type: constants.BREADCRUMB_ERROR, error: new Error('Request failed with status code 500') };
 
-    const query = 'test';
+    const id = '122';
     const store = mockStore({ products: [] });
   
-    return store.dispatch(searchAction(query))
+    return store.dispatch(getCategoryAction(id))
       .then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual(expectedAction);
