@@ -1,12 +1,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ##steps
-melhorar coverage dos testes unitários
 Remover o Completo unico
 Melhorar Navegação para detalhes de produtos
 Formtara o preço no front
 Espaço quebra a busca
-ajustar App.js
 
 extras
 refatorar codigo
