@@ -23,4 +23,14 @@ describe('breadcrumbReducer', () => {
 
     expect(newState).toEqual({ error });
   });
+
+  it('Should return initialState when action type was undefined', () => {
+    const initialState = {
+      text: ''
+    };
+    const action = {};
+    const newState = breadcrumbReducer(initialState, action);
+
+    expect(newState).toEqual(initialState);
+  });
 });

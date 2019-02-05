@@ -47,4 +47,14 @@ describe('productsReducer', () => {
 
     expect(newState).toEqual({ items: [], categories: [], error });
   });
+
+  it('Should return initialState when action type was undefined', () => {
+    const initialState = {
+      text: ''
+    };
+    const action = {};
+    const newState = productsReducer(initialState, action);
+
+    expect(newState).toEqual(initialState);
+  });
 });

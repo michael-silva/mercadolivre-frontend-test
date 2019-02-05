@@ -12,4 +12,14 @@ describe('queryReducer', () => {
 
     expect(newState).toEqual({ text });
   });
+
+  it('Should return initialState when action type was undefined', () => {
+    const initialState = {
+      text: ''
+    };
+    const action = {};
+    const newState = queryReducer(initialState, action);
+
+    expect(newState).toEqual(initialState);
+  });
 });

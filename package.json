@@ -27,10 +27,19 @@
     "front": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "yarn test --coverage",
     "eject": "react-scripts eject",
     "server": "node server.js",
     "server:watch": "nodemon server.js",
     "dev": "concurrently --kill-others-on-fail \"yarn server:watch\" \"yarn front\""
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/index.js",
+      "!src/store.js",
+      "!src/serviceWorker.js"
+    ]
   },
   "eslintConfig": {
     "extends": "react-app"
