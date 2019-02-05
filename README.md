@@ -1,6 +1,7 @@
 # Teste Frontend - Mercado Livre
 
 Esse projeto é a implementação solicitada no teste técnico de front-end do Mercado Livre.
+Projeto hospedado com Heroku no link https://mercadolivre-test-frontend.herokuapp.com
 
 ## Pré-requisitos
 
@@ -18,12 +19,6 @@ $ yarn install
 ## Desenvolvendo
 
 Após instalar as dependências para rodar o projeto local execute:
-
-```
-$ yarn start
-```
-
-Ou 
 
 ```
 $ yarn dev
@@ -61,11 +56,10 @@ PROD: booleano que indica se esta em ambiente de produção
 e execute: 
 
 ```
-yarn server
+yarn start
 ```
 
 ## Melhorias
-- Publicar no heroku
 - Server side rendering para SEO
 - Maner estado da página ao navegar pelo historico do browser
 - Aplicar placeholder enquanto imagens carregam
