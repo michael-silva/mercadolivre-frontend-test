@@ -31,7 +31,8 @@
     "eject": "react-scripts eject",
     "server": "node server.js",
     "server:watch": "nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail \"yarn server:watch\" \"yarn front\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server:watch\" \"yarn front\"",
+    "heroku-postbuild": "yarn build"
   },
   "jest": {
     "collectCoverageFrom": [
