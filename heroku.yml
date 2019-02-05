@@ -1,0 +1,7 @@
+build:
+  languages:
+    - node
+  command:
+    - yarn build
+run:
+  web: yarn start
