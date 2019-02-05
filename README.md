@@ -36,6 +36,12 @@ Para rodar os testes de unidade execute:
 $ yarn test
 ```
 
+Para verificar o coverage report execute:
+
+```
+$ yarn test:coverage
+```
+
 ## Preparando para deploy
 
 para gerar o build do front execute:
