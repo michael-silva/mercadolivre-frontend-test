@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import bodyParser from 'body-parser';
 import compression from 'compression';
-import universalLoader from './universal2';
+import universalLoader from './universal';
 //import universalLoader from './universal';
 import apiRouter from './api';
 import clientRouter from './client';

@@ -1,5 +1,7 @@
 export const CONFIG = {
-  API_URL: 'http://localhost:5000'
+  API_URL: 'http://localhost:5000',
+  GLOBAL_TITLE: 'Mercado Livre',
+  DEFAULT_DESC: 'A maior Comunidade de compra e venda online da América Latina.',
 }
 
 export const CONDITIONS = {

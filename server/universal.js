@@ -1,77 +1,62 @@
-import path from 'path';
+import React from "react";
 import fs from 'fs';
-
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+import path from 'path';
+import { renderToString } from "react-dom/server";
+import { StaticRouter } from "react-router-dom";
+import { Provider } from "react-redux";
 import Helmet from 'react-helmet';
+import createStore from './store';
+import AppContainer from "../src/containers/AppContainer";
+import { componentsToRender } from '../src/shared/ServerSideComponent';
 
-import { Provider } from 'react-redux';
-import { ConnectedRouter } from 'react-router-redux';
-import { Route } from 'react-router-dom';
+function loadHtmlTemplate(reactDom, reduxState) {
+    // Load in our HTML file from our build
+    const filePath = path.resolve(__dirname, '../build/index.html');
 
-import { StaticRouter } from 'react-router';
-import { Frontload, frontloadServerRender } from 'react-frontload';
-import Loadable from 'react-loadable';
+    return new Promise((resolve, reject) => {
+        fs.readFile(filePath, 'utf8', (err, htmlData) => {
+            if (err) return reject(err);
 
-import createServerStore from './store';
-import App from '../src/components/App';
-
-// A simple helper function to prepare the HTML markup
-const prepHTML = (data, { html, head, body }) => {
-  data = data.replace('<html lang="en">', `<html ${html}`);
-  data = data.replace('</head>', `${head}</head>`);
-  data = data.replace('<div id="root"></div>', `<div id="root">${body}</div>`);
-
-  return data;
-};
+            const htmlRoot = `<div id="root">${reactDom}</div>
+                <script>window.REDUX_DATA = ${ JSON.stringify(reduxState)}</script>`;
+            let htmlFinal = htmlData.replace('<div id="root"></div>', htmlRoot);
+            resolve(htmlFinal);
+        });
+    });
+}
 
 const universalLoader = (req, res) => {
-  // Load in our HTML file from our build
-  const filePath = path.resolve(__dirname, '../build/index.html');
-
-  fs.readFile(filePath, 'utf8', (err, htmlData) => {
-    // If there's an error... serve up something nasty
-    if (err) {
-      console.error('Read error', err);
-
-      return res.status(404).end();
-    }
-
-    // Create a store and sense of history based on the current path
-    //const { store, history } = createServerStore(req.url);
-    const { store, history } = createServerStore(req.path);
-
-    const modules = {};
     const context = {};
+    const store = createStore();
 
-    const routeMarkup = renderToString(
-      <Loadable.Capture report={m => modules.push(m)}>
+    const appJsx = (
         <Provider store={store}>
-          <StaticRouter location={req.url} context={context}>
-            <Frontload isServer={true}>
-              <App />
-            </Frontload>
-          </StaticRouter>
-        </Provider>
-      </Loadable.Capture>
-    );
+            <StaticRouter context={context} location={req.url}>
+                <AppContainer />
+            </StaticRouter>
+        </Provider>);
+    
+    renderToString(appJsx);
+    Promise.all(componentsToRender.map(c => c.fetchInitialData()))
+        .then(() => {
+            componentsToRender.splice(0);
+            let reduxState = store.getState();
 
-    // Let Helmet know to insert the right tags
-    const helmet = Helmet.renderStatic();
+            const reactDom = renderToString(appJsx);
 
-    // Form the final HTML response
-    const html = prepHTML(htmlData, {
-      html: helmet.htmlAttributes.toString(),
-      head:
-        helmet.title.toString() +
-        helmet.meta.toString() +
-        helmet.link.toString(),
-      body: routeMarkup
-    });
-
-    // Up, up, and away...
-    res.send(html);
-  });
+            return loadHtmlTemplate(reactDom, reduxState);
+        })
+        .then(html => {
+            const helmet = Helmet.renderStatic();
+            const helmetData = helmet.title.toString() + helmet.meta.toString();
+            const page = html.replace('</head>', `${helmetData}</head>`);
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(page);
+        })
+        .catch(err => {
+            console.error('Read error', err);
+            return res.status(404).end();
+        });
 };
 
 export default universalLoader;

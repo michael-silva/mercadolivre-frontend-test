@@ -23,8 +23,7 @@ export class ProductListContainer extends Component {
 
 const mapStateToProps = state => ({
   products: state.products.items.map(ProductsService.formatProduct)
-})
-
+});
 
 export default connect(
   mapStateToProps

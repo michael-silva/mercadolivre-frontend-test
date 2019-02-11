@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './styles/index.scss';
-import App from './components/App';
-//import store from './store';
+import AppContainer from './containers/AppContainer';
 import * as serviceWorker from './serviceWorker';
 
 import createStore from './store';
@@ -16,7 +15,7 @@ const root = document.getElementById('root');
 ReactDOM.hydrate(
     <Provider store={store}>
         <Router>
-            <App />
+            <AppContainer />
         </Router>
     </Provider>, root);
 

@@ -1,5 +1,5 @@
 import express from 'express';
-import universalLoader from './universal2';
+import universalLoader from './universal';
 //import universalLoader from './universal';
 
 const router = express.Router();
