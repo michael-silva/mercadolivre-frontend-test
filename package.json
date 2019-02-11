@@ -14,6 +14,7 @@
     "express": "^4.16.4",
     "flexboxgrid-sass": "^8.0.5",
     "ignore-styles": "^5.0.1",
+    "md5-file": "^4.0.0",
     "moxios": "^0.4.0",
     "node-sass": "^4.11.0",
     "query-string": "^6.2.0",

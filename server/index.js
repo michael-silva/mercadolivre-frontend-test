@@ -1,5 +1,7 @@
-require('ignore-styles');
+const ignoreStyles = require('ignore-styles').default;
 require("@babel/polyfill");
+
+ignoreStyles(undefined, require('./filesHandler').default);
 
 require('@babel/register')({
     ignore: [/(build|node_modules)/],
