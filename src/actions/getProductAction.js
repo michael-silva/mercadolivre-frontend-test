@@ -1,5 +1,5 @@
-import constants from '../constants';
-import axios from 'axios';
+import constants, { CONFIG } from '../constants';
+import request from 'request-promise';
 
 export const getProductSuccessAction = (item) => {
   return {
@@ -17,9 +17,9 @@ export const getProductErrorAction = (error) => {
 
 export const getProductActionAsync = (id) => {
   return (dispatch, getState) => {
-    return axios.get(`/api/items/${id}`)
-      .then(res => {
-        const item = res.data.item;
+    return request.get(`${CONFIG.API_URL}/api/items/${id}`, { json: true })
+      .then(data => {
+        const item = data.item;
         dispatch(getProductSuccessAction(item));
       })
       .catch(e => dispatch(getProductErrorAction(e)));

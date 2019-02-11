@@ -1,19 +1,27 @@
-import React, { Component } from "react";
+import QueryString from 'query-string';
+import React from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import searchAction from '../actions/searchAction';
 import changeQueryAction from '../actions/changeQueryAction';
 import SearchBar from "../components/SearchBar";
+import ServerSideComponent from '../shared/ServerSideComponent';
 
-export class SearchBarContainer extends Component {
+export class SearchBarContainer extends ServerSideComponent {
   componentDidMount() {
-    const params = new URLSearchParams(this.props.location.search);
-    const query = params.get('q') || '';
+    this.fetchInitialData();
+  }
+
+  fetchInitialData() {
+    const params = QueryString.parse(this.props.location.search);
+    const query = params.q || '';
     if (query.length > 0) {
-      const { onSearch, onChange } = this.props;
-      onChange(query);
-      onSearch(encodeURI(query));
+      const { onChange, onSearch } = this.props;
+      onChange(query)
+      return onSearch(encodeURI(query));
     }
+    
+    return Promise.resolve();
   }
 
   searchHandler(e) {

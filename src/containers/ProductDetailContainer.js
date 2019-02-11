@@ -1,48 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
 import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
-import { CONDITIONS } from '../constants';
 import getProductAction from '../actions/getProductAction';
 import ProductDetail from "../components/ProductDetail";
-import CurrencyService from '../shared/CurrencyService';
+import ProductsService from '../shared/ProductsService';
+import ServerSideComponent from '../shared/ServerSideComponent';
 
-export class ProductDetailContainer extends Component {
-  constructor() {
-    super();
-    this.state = { product: null };
-    this.currencyService = new CurrencyService();
-  }
-
+export class ProductDetailContainer extends ServerSideComponent {
   componentDidMount() {
+    this.fetchInitialData();
+  }
+
+  fetchInitialData() {
     const { id } = this.props.match.params;
-    this.props.dispatch(getProductAction(id));
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const { product } = this.props;
-    if (prevProps.product !== product) {
-      this.setState({ product: this.formatProduct(product) })
-    }
-  }
-
-  formatProduct(originalProduct) {
-    const product = { ...originalProduct };
-    product.price.amount_label = this.currencyService.formatAmount(originalProduct.price.currency, originalProduct.price.amount);
-    const decimalsString = originalProduct.price.decimals.toString();
-    product.price.decimals_label = decimalsString.length === 1 ? `${decimalsString}0` : decimalsString;
-    product.condition_label = CONDITIONS[originalProduct.condition];
-    product.description = originalProduct.description.replace(/\n/gm, '<br />');
-    return product;
+    return this.props.dispatch(getProductAction(id));
   }
 
   render() {
-    const { product } = this.state;
+    const { product } = this.props;
     return product ? <ProductDetail product={product}></ProductDetail> : <></>;
   }
 }
 
 const mapStateToProps = state => ({
-  product: state.products.items[0],
+  product: ProductsService.formatProduct(state.products.items[0]),
 });
 
 

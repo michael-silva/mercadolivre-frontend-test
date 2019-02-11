@@ -1,4 +1,4 @@
-class CurrencyService {
+export class CurrencyService {
   constructor() {
     this.currency_symbols = {
       'USD': { symbol: '$', separator: ',', }, // US Dollar
@@ -38,4 +38,5 @@ class CurrencyService {
 }
 }
 
-export default CurrencyService;
+const instance = new CurrencyService();
+export default instance;

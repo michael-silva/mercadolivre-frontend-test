@@ -1,6 +1,6 @@
 
-import constants from '../constants';
-import axios from 'axios';
+import constants, { CONFIG } from '../constants';
+import request from 'request-promise';
 
 export const getCategorySuccessAction = (path) => {
   return {
@@ -18,9 +18,9 @@ export const getCategoryErrorAction = (error) => {
 
 export const getCategoryActionAsync = (id) => {
   return (dispatch, getState) => {
-    return axios.get(`/api/categories/${id}`)
-      .then(res => {
-        const { path } = res.data;
+    return request.get(`${CONFIG.API_URL}/api/categories/${id}`, { json: true })
+      .then(data => {
+        const { path } = data;
         dispatch(getCategorySuccessAction(path));
       })
       .catch(e => dispatch(getCategoryErrorAction(e)));

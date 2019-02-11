@@ -1,3 +1,7 @@
+export const CONFIG = {
+  API_URL: 'http://localhost:5000'
+}
+
 export const CONDITIONS = {
   new: 'Nuevo',
   used: 'Usado'

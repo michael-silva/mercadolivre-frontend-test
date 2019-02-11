@@ -1,6 +1,6 @@
 
-import constants from '../constants';
-import axios from 'axios';
+import constants, { CONFIG } from '../constants';
+import request from 'request-promise';
 
 export const searchSuccessAction = (items, categories) => {
   return {
@@ -19,10 +19,10 @@ export const searchErrorAction = (error) => {
 
 export const searchActionAsync = (query) => {
   return (dispatch, getState) => {
-    return axios.get(`/api/items?q=${query}`)
-      .then(res => {
-        const items = res.data.items;
-        const categories = res.data.categories;
+    return request.get(`${CONFIG.API_URL}/api/items?q=${query}`, { json: true })
+      .then(data => {
+        const items = data.items;
+        const categories = data.categories;
         dispatch(searchSuccessAction(items, categories));
       })
       .catch(e => dispatch(searchErrorAction(e)));

@@ -3,29 +3,9 @@ import { withRouter } from 'react-router-dom';
 import { connect } from "react-redux";
 import changeQueryAction from '../actions/changeQueryAction';
 import ProductList from "../components/ProductList";
-import CurrencyService from '../shared/CurrencyService';
+import ProductsService from '../shared/ProductsService';
 
 export class ProductListContainer extends Component {
-  constructor() {
-    super();
-    this.state = { products: [] };
-    this.currencyService = new CurrencyService();
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    const { products } = this.props;
-    if (prevProps.products !== products) {
-      this.setState({ products: products.map(this.formatProduct.bind(this)) })
-    }
-  }
-
-  formatProduct(originalProduct) {
-    const product = { ...originalProduct };
-    product.price.amount_label = this.currencyService.formatAmount(originalProduct.price.currency, originalProduct.price.amount);
-    const decimalsString = originalProduct.price.decimals.toString();
-    product.price.decimals_label = decimalsString.length === 1 ? `${decimalsString}0` : decimalsString;
-    return product;
-  }
 
   navigate(product) {
     const { history, dispatch } = this.props;
@@ -34,7 +14,7 @@ export class ProductListContainer extends Component {
   }
 
   render() {
-    let { products } = this.state;
+    let { products } = this.props;
     return products.length > 0 
       ? <ProductList itemClick={this.navigate.bind(this)} products={products}></ProductList> 
       : <></>;
@@ -42,7 +22,7 @@ export class ProductListContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products.items
+  products: state.products.items.map(ProductsService.formatProduct)
 })
 
 
