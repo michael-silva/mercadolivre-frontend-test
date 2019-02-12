@@ -50,12 +50,12 @@ const universalLoader = (req, res) => {
             const helmet = Helmet.renderStatic();
             const helmetData = helmet.title.toString() + helmet.meta.toString();
             const page = html.replace('</head>', `${helmetData}</head>`);
-            res.writeHead(200, { "Content-Type": "text/html" });
-            res.end(page);
+            //res.writeHead(200, { "Content-Type": "text/html" });
+            res.status(200).send(page);
         })
         .catch(err => {
             console.error('Read error', err);
-            return res.status(404).end();
+            return res.status(404).send();
         });
 };
 

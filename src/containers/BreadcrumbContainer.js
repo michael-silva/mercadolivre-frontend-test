@@ -4,9 +4,19 @@ import getCategoryAction from '../actions/getCategoryAction';
 import Breadcrumb from "../components/Breadcrumb";
 
 export class BreadcrumbContainer extends Component {
+  componentDidMount() {
+    this.categoryChanged();
+  }
+
   componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.category !== this.props.category) {
+        this.categoryChanged();
+    }
+  }
+
+  categoryChanged() {
     const { category, dispatch } = this.props;
-    if (prevProps.category !== category) {
+    if (category) {
         dispatch(getCategoryAction(category));
     }
   }

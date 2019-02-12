@@ -52,6 +52,8 @@ Crie as duas variaveis de ambiente a seguir
 ```
 PORT: número da porta para rodar a aplicação
 PROD: booleano que indica se esta em ambiente de produção
+CACHE_TIME: número em segundos para cache da aplicação, valor padrão de 60 segundos
+API_URL: url para acesso da api, valor padrão para desenvolvimento é http://localhost:5000
 ```
 
 e execute: 
