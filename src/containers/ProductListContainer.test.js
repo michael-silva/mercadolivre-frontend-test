@@ -1,22 +1,10 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import { ProductListContainer } from './ProductListContainer';
 import ProductList from '../components/ProductList';
 
 
 describe('ProductListContainer', () => {
-
-  it('Should format product item to view model', () => {
-    const product = { id: '123', price: { amount: 1234, currency: 'USD', decimals: 0 } };
-    const productFormated = { id: '123', price: { amount: 1234, amount_label: '$ 1,234', currency: 'USD', decimals: 0, decimals_label: '00' } };
-
-    const wrapper = shallow(
-      <ProductListContainer products={[]}  />
-    );
-
-    const result = wrapper.instance().formatProduct(product);
-    expect(result).toEqual(productFormated);
-  });
 
   it('Should navigate to product item', () => {
     const dispatchMock = jest.fn();

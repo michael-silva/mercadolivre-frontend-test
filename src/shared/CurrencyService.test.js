@@ -5,8 +5,7 @@ describe('CurrencyService', () => {
     const formated = '$ 1,000';
     const country = 'USD';
     const amount = 1000;
-    const currencyService = new CurrencyService();
-    const result = currencyService.formatAmount(country, amount);
+    const result = CurrencyService.formatAmount(country, amount);
     expect(result).toEqual(formated);
   });
 
@@ -14,8 +13,7 @@ describe('CurrencyService', () => {
     const formated = '$ 1.000.000';
     const country = 'ARS';
     const amount = 1000000;
-    const currencyService = new CurrencyService();
-    const result = currencyService.formatAmount(country, amount);
+    const result = CurrencyService.formatAmount(country, amount);
     expect(result).toEqual(formated);
   });
 
@@ -24,8 +22,7 @@ describe('CurrencyService', () => {
     const formated = '¥ 100';
     const amount = 100;
     const country = 'JPY';
-    const currencyService = new CurrencyService();
-    const result = currencyService.formatAmount(country, amount);
+    const result = CurrencyService.formatAmount(country, amount);
     expect(result).toEqual(formated);
   });
 });

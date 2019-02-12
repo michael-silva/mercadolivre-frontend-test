@@ -2,7 +2,8 @@ import getProductAction from './getProductAction';
 import constants from '../constants';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import moxios from 'moxios';
+import request from 'request-promise';
+import sinon from 'sinon';
 
 const item = { category: 'category' };
 
@@ -10,22 +11,14 @@ const mockStore = configureMockStore([ thunk ]);
 
 describe('getProductAction', () => {
 
-  beforeEach(function () {
-    moxios.install();
-  });
-
   afterEach(function () {
-    moxios.uninstall();
+    request.get.restore();
   });
 
   it('creates PRODUCT_GET_SUCCESS after successfuly fetching one product', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: { item },
-      });
-    });
+    sinon
+      .stub(request, 'get')
+      .returns(Promise.resolve({ item }));
 
     const expectedAction = { type: constants.PRODUCT_GET_SUCCESS, item };
 
@@ -40,15 +33,12 @@ describe('getProductAction', () => {
   });
 
   it('creates PRODUCT_GET_ERROR after erroring fetching products', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 500,
-        response: {},
-      });
-    });
+    const error = new Error('Request failed with status code 500');
+    sinon
+      .stub(request, 'get')
+      .returns(Promise.reject(error));
 
-    const expectedAction = { type: constants.PRODUCT_GET_ERROR, error: new Error('Request failed with status code 500') };
+    const expectedAction = { type: constants.PRODUCT_GET_ERROR, error };
 
     const id = '122';
     const store = mockStore({ products: [] });

@@ -2,31 +2,24 @@ import searchAction from './searchAction';
 import constants from '../constants';
 import thunk from 'redux-thunk';
 import configureMockStore from 'redux-mock-store';
-import moxios from 'moxios';
+import request from 'request-promise';
+import sinon from 'sinon';
 
 const items = [{}, {}, {}];
 const categories = [{}, {}];
 
-const mockStore = configureMockStore([ thunk ]);
+const mockStore = configureMockStore([thunk]);
 
 describe('SearchAction', () => {
 
-  beforeEach(function () {
-    moxios.install();
-  });
-
   afterEach(function () {
-    moxios.uninstall();
+    request.get.restore();
   });
 
   it('creates SEARCH_PRODUCTS_SUCCESS after successfuly fetching products', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 200,
-        response: { items, categories },
-      });
-    });
+    sinon
+      .stub(request, 'get')
+      .returns(Promise.resolve({ items, categories }));
 
     const expectedAction = { type: constants.PRODUCT_SEARCH_SUCCESS, items, categories };
 
@@ -41,19 +34,16 @@ describe('SearchAction', () => {
   });
 
   it('creates SEARCH_PRODUCTS_ERROR after erroring fetching products', () => {
-    moxios.wait(() => {
-      const request = moxios.requests.mostRecent();
-      request.respondWith({
-        status: 500,
-        response: {},
-      });
-    });
+    const error = new Error('Request failed with status code 500');
+    sinon
+      .stub(request, 'get')
+      .returns(Promise.reject(error));
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_ERROR, error: new Error('Request failed with status code 500') };
+    const expectedAction = { type: constants.PRODUCT_SEARCH_ERROR, error };
 
     const query = 'test';
     const store = mockStore({ products: [] });
-  
+
     return store.dispatch(searchAction(query))
       .then(() => {
         const actions = store.getActions();

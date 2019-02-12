@@ -62,6 +62,7 @@
   ],
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "sinon": "^7.2.3"
   }
 }
