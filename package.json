@@ -16,7 +16,6 @@
     "ignore-styles": "^5.0.1",
     "md5-file": "^4.0.0",
     "memory-cache": "^0.2.0",
-    "moxios": "^0.4.0",
     "node-sass": "^4.11.0",
     "query-string": "^6.2.0",
     "react": "^16.7.0",
@@ -41,6 +40,7 @@
     "eject": "react-scripts eject",
     "server": "node server/index.js",
     "server:watch": "nodemon server/index.js",
+    "server:local": "set \"NODE_ENV=production\" && set \"REACT_APP_API_URL=http://localhost:5000\" && yarn server:watch",
     "dev": "concurrently --kill-others-on-fail \"yarn server:watch\" \"yarn front\"",
     "heroku-postbuild": "yarn build"
   },

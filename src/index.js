@@ -12,12 +12,19 @@ const store = createStore(window.REDUX_DATA);
 
 const root = document.getElementById('root');
 
-ReactDOM.hydrate(
+const jsx = (
     <Provider store={store}>
         <Router>
             <AppContainer />
         </Router>
-    </Provider>, root);
+    </Provider>);
+
+if (process.env.REACT_APP_ENV === 'production') {
+    ReactDOM.hydrate(jsx, root);
+}
+else {
+    ReactDOM.render(jsx, root);
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

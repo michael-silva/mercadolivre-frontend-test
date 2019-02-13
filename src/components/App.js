@@ -8,14 +8,9 @@ import ProductDetailContainer from '../containers/ProductDetailContainer';
 import BreadcrumbContainer from '../containers/BreadcrumbContainer';
 import SearchBarContainer from '../containers/SearchBarContainer';
 
-
-const App = ({ title, description, keywords }) => (
+const App = ({ title, meta }) => (
     <div className="container">
-      <Helmet>
-        <title>{title}</title>
-        <meta name="description" content={description} />
-        <meta name="keywords" content={keywords} />
-      </Helmet>
+      <Helmet title={title} meta={meta}></Helmet>
       <SearchBarContainer></SearchBarContainer>
       <div className="row row-block -bottom">
         <div className="col-sm-offset-1 col-sm-10">
@@ -36,8 +31,7 @@ const App = ({ title, description, keywords }) => (
 
 App.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  keywords: PropTypes.string
+  meta: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
 };
 
 export default App;

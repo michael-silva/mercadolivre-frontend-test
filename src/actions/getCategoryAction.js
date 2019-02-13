@@ -21,7 +21,7 @@ export const getCategoryActionAsync = (id) => {
     return request.get(`${CONFIG.API_URL}/api/categories/${id}`, { json: true })
       .then(data => {
         const { path } = data;
-        dispatch(getCategorySuccessAction(path));
+        return dispatch(getCategorySuccessAction(path));
       })
       .catch(e => dispatch(getCategoryErrorAction(e)));
   };

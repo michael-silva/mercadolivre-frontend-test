@@ -4,8 +4,9 @@ import SEOService from '../shared/SEOService';
 
 const mapStateToProps = state => ({
   title: SEOService.getTitle(state.products.items, state.query.text),
-  description: SEOService.getDescription(state.products.items, state.query.text),
-  keywords: ''
+  meta: [
+    { name: 'description', content: SEOService.getDescription(state.products.items, state.query.text) },
+  ]
 });
 
 export default connect(

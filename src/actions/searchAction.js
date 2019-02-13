@@ -23,7 +23,7 @@ export const searchActionAsync = (query) => {
       .then(data => {
         const items = data.items;
         const categories = data.categories;
-        dispatch(searchSuccessAction(items, categories));
+        return dispatch(searchSuccessAction(items, categories));
       })
       .catch(e => dispatch(searchErrorAction(e)));
   };

@@ -20,7 +20,7 @@ export const getProductActionAsync = (id) => {
     return request.get(`${CONFIG.API_URL}/api/items/${id}`, { json: true })
       .then(data => {
         const item = data.item;
-        dispatch(getProductSuccessAction(item));
+        return dispatch(getProductSuccessAction(item));
       })
       .catch(e => dispatch(getProductErrorAction(e)));
   };
