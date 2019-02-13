@@ -9,16 +9,36 @@ import ServerSideComponent from '../shared/ServerSideComponent';
 
 export class SearchBarContainer extends ServerSideComponent {
   componentDidMount() {
+    if (window) {
+      window.onpopstate = this.handlePopState.bind(this);
+    }
     this.fetchInitialData();
   }
 
+  componentWillUnmount() {
+    if (window) {
+      window.onpopstate = null;
+    }
+  }
+
+  handlePopState(event) {
+    event.preventDefault();
+    this.fetchInitialData();  
+  }
+
   fetchInitialData() {
-    const params = QueryString.parse(this.props.location.search);
+    const { history, location } = this.props;
+    const lastSearch = location.search;
+    const currentSearch = history.location.search;
+    const params = QueryString.parse(currentSearch);
     const query = params.q || '';
-    if (query.length > 0) {
+    if (query.length > 0 ) {
       const { onChange, onSearch } = this.props;
       onChange(query)
       return onSearch(encodeURI(query));
+    }
+    else if(lastSearch !== currentSearch) {
+      this.props.onChange('');
     }
     
     return Promise.resolve();
