@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import pureComponent from '../shared/pureComponent';
 
 import '../styles/ProductDetail.scss';
 
@@ -37,4 +38,4 @@ ProductDetail.propTypes = {
   product: PropTypes.object.isRequired,
 };
 
-export default ProductDetail;
+export default pureComponent(ProductDetail);
