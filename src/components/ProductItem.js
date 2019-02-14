@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+import ImageContainer from '../containers/ImageContainer';
 import shippingIcon from '../assets/ic_shipping.png';
 import shippingIcon2x from '../assets/ic_shipping@2x.png.png';
 
@@ -8,7 +9,7 @@ import '../styles/ProductItem.scss';
 const ProductItem = ({ product, onClick }) => (
   <li className="product-item" onClick={onClick}>
     <div className="picturebox">
-      <img className="image" src={product.picture} alt="Imagem do produto" />
+      <ImageContainer className="image" src={product.picture} alt={product.title} />
     </div>
     <div className="content">
       <h2 className="product-item-header">

@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import PropTypes from "prop-types";
+import ImageContainer from '../containers/ImageContainer';
 
 import '../styles/ProductDetail.scss';
 
@@ -8,7 +9,7 @@ const ProductDetail = ({ product }) => (
     <div className="row row-block-6">
       <div className="col-sm-7">
         <div className="product-image">
-          <img className="image" src={product.picture} alt="Imagem do produto" />
+          <ImageContainer className="image" src={product.picture} alt={product.title} />
         </div>
       </div>
       <div className="col-sm-4">

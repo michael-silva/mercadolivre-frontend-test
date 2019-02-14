@@ -75,5 +75,22 @@
     height: auto;
     width:auto;
     display: block;
+
+    &.-loading {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      &::after {
+        @extend %shimmerEffect;
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        //background-color: $mlLightGray;
+      }
+    }
   }
 }
