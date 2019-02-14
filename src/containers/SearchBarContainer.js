@@ -57,13 +57,14 @@ export class SearchBarContainer extends ServerSideComponent {
   }
 
   render() {
-    const { query } = this.props;
-    return <SearchBar query={query} onChange={this.changeHandler} onSearch={this.searchHandler}></SearchBar>
+    const { query, loading } = this.props;
+    return <SearchBar loading={loading} query={query} onChange={this.changeHandler} onSearch={this.searchHandler}></SearchBar>
   }
 }
 
 const mapStateToProps = (state, props) => ({
   query: state.query.text,
+  loading: !!state.products.searching
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

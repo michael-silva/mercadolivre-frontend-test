@@ -2,6 +2,10 @@
 import constants, { CONFIG } from '../constants';
 import request from 'request-promise';
 
+export const getCategoryStartAction = () => {
+  return { type: constants.BREADCRUMB_START };
+}
+
 export const getCategorySuccessAction = (path) => {
   return {
     type: constants.BREADCRUMB_SUCCESS,
@@ -18,6 +22,7 @@ export const getCategoryErrorAction = (error) => {
 
 export const getCategoryActionAsync = (id) => {
   return (dispatch, getState) => {
+    dispatch(getCategoryStartAction());
     return request.get(`${CONFIG.API_URL}/api/categories/${id}`, { json: true })
       .then(data => {
         const { path } = data;

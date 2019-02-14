@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 import PropTypes from "prop-types";
 import '../styles/App.scss';
 import { Route, Switch } from "react-router";
+import ErrorBoundary from '../containers/ErrorBoundary';
 import ProductListContainer from '../containers/ProductListContainer';
 import ProductDetailContainer from '../containers/ProductDetailContainer';
 import BreadcrumbContainer from '../containers/BreadcrumbContainer';
@@ -12,20 +13,22 @@ const App = ({ title, meta }) => (
     <div className="container">
       <Helmet title={title} meta={meta}></Helmet>
       <SearchBarContainer></SearchBarContainer>
-      <div className="row row-block -bottom">
-        <div className="col-sm-offset-1 col-sm-10">
-          <BreadcrumbContainer></BreadcrumbContainer>
+      <ErrorBoundary>
+        <div className="row row-block -bottom">
+          <div className="col-sm-offset-1 col-sm-10">
+            <BreadcrumbContainer></BreadcrumbContainer>
+          </div>
         </div>
-      </div>
-      <div className="row">
-        <div className="col-sm-offset-1 col-sm-10">
-          <Switch>
-            <Route exact path="/" component={ProductListContainer} />
-            <Route exact path="/items" component={ProductListContainer} />
-            <Route path="/items/:id" component={ProductDetailContainer} />
-          </Switch>
+        <div className="row">
+          <div className="col-sm-offset-1 col-sm-10">
+            <Switch>
+              <Route exact path="/" component={ProductListContainer} />
+              <Route exact path="/items" component={ProductListContainer} />
+              <Route path="/items/:id" component={ProductDetailContainer} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </ErrorBoundary>
     </div>
 );
 

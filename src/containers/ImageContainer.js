@@ -1,12 +1,18 @@
 import React, { PureComponent } from "react";
 
 export class ImageContainer extends PureComponent {
-    constructor() {
-        super();
-        this.state = { loading: true };
-    }
+  constructor() {
+      super();
+      this.state = { loading: true };
+  }
+  
   componentDidMount() {
+    this.mounted = true;
     this.loadImage();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -20,7 +26,9 @@ export class ImageContainer extends PureComponent {
     const img = new Image();
     img.src = this.props.src;
     img.onload = (e) => {
+      if (this.mounted) {
         this.setState({ loading: false });
+      }
     }
   }
 

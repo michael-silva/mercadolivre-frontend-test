@@ -22,14 +22,15 @@ export class BreadcrumbContainer extends Component {
   }
 
   render() {
-    const { path } = this.props;
-    return path.length > 0 ? <Breadcrumb path={path}></Breadcrumb> : <></>;
+    const { path, loading } = this.props;
+    return <Breadcrumb loading={loading} path={path}></Breadcrumb>;
   }
 }
 
 const mapStateToProps = state => ({
   category: state.products.categories[0],
   path: state.breadcrumb.path,
+  loading: !!state.products.fetching || !!state.products.searching || !!state.breadcrumb.fetching
 });
 
 
