@@ -1,6 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
-import pureComponent from '../shared/pureComponent';
 import shippingIcon from '../assets/ic_shipping.png';
 import shippingIcon2x from '../assets/ic_shipping@2x.png.png';
 
@@ -39,4 +38,4 @@ ProductItem.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default pureComponent(ProductItem);
+export default memo(ProductItem);

@@ -44,7 +44,7 @@ export class SearchBarContainer extends ServerSideComponent {
     return Promise.resolve();
   }
 
-  searchHandler(e) {
+  searchHandler = (e) => {
     e.preventDefault();
     const { history, query, onSearch } = this.props;
     const text = encodeURI(query);
@@ -52,9 +52,13 @@ export class SearchBarContainer extends ServerSideComponent {
     onSearch(text);
   }
 
+  changeHandler = (e) => {
+    this.props.onChange(e.target.value);
+  }
+
   render() {
-    const { query, onChange } = this.props;
-    return <SearchBar query={query} onChange={(e) => onChange(e.target.value)} onSearch={this.searchHandler.bind(this)}></SearchBar>
+    const { query } = this.props;
+    return <SearchBar query={query} onChange={this.changeHandler} onSearch={this.searchHandler}></SearchBar>
   }
 }
 

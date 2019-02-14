@@ -1,6 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
-import pureComponent from '../shared/pureComponent';
 import ProductItem from "../components/ProductItem";
 
 import '../styles/ProductList.scss';
@@ -20,4 +19,4 @@ ProductList.propTypes = {
   itemClick: PropTypes.func.isRequired
 };
 
-export default pureComponent(ProductList);
+export default memo(ProductList);

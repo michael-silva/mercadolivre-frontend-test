@@ -1,6 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
-import pureComponent from '../shared/pureComponent';
 import logo from '../assets/Logo_ML.png';
 import logo2x from '../assets/Logo_ML@2x.png.png';
 import searchIcon from '../assets/ic_Search.png';
@@ -32,4 +31,4 @@ SearchBar.propTypes = {
   onChange: PropTypes.func.isRequired,
 };
 
-export default pureComponent(SearchBar);
+export default memo(SearchBar);

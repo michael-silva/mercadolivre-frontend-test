@@ -7,7 +7,7 @@ import ProductsService from '../shared/ProductsService';
 
 export class ProductListContainer extends Component {
 
-  navigate(product) {
+  navigate = (product) => {
     const { history, dispatch } = this.props;
     history.push(`/items/${product.id}`);
     dispatch(changeQueryAction(''));
@@ -16,7 +16,7 @@ export class ProductListContainer extends Component {
   render() {
     let { products } = this.props;
     return products.length > 0 
-      ? <ProductList itemClick={this.navigate.bind(this)} products={products}></ProductList> 
+      ? <ProductList itemClick={this.navigate} products={products}></ProductList> 
       : <></>;
   }
 }

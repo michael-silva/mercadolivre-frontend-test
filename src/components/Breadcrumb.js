@@ -1,6 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
 import PropTypes from "prop-types";
-import pureComponent from '../shared/pureComponent';
 
 import '../styles/Breadcrumb.scss';
 
@@ -16,4 +15,4 @@ Breadcrumb.propTypes = {
   path: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
-export default pureComponent(Breadcrumb);
+export default memo(Breadcrumb);
