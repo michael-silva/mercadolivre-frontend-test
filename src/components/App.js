@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import '../styles/App.scss';
 import { Route, Switch } from "react-router";
 import ErrorBoundary from '../containers/ErrorBoundary';
+import Home from './Home';
 import ProductListContainer from '../containers/ProductListContainer';
 import ProductDetailContainer from '../containers/ProductDetailContainer';
 import BreadcrumbContainer from '../containers/BreadcrumbContainer';
@@ -22,7 +23,7 @@ const App = ({ title, meta }) => (
         <div className="row">
           <div className="col-sm-offset-1 col-sm-10">
             <Switch>
-              <Route exact path="/" component={ProductListContainer} />
+              <Route exact path="/" component={Home} />
               <Route exact path="/items" component={ProductListContainer} />
               <Route path="/items/:id" component={ProductDetailContainer} />
             </Switch>

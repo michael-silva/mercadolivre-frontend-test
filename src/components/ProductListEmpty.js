@@ -4,13 +4,10 @@ import '../styles/ProductList.scss';
 
 const ProductListEmpty = () => (
   <div className="page-card">
-    <ul className="product-list -empty">
-      <li className="product-item">
-        <div className="content">
-          <h1 className="name">Não encontramos resultados para sua busca.</h1>
-        </div>
-      </li>
-    </ul>
+    <div className="product-list -empty">
+      <h2 className="title">Não encontramos resultados para sua busca.</h2>
+      <p className="description">Verifique se o termo buscado esta correto, e tente novamente.</p>
+    </div>
   </div>
 );
 
