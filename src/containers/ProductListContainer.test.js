@@ -1,8 +1,8 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { ProductListContainer } from './ProductListContainer';
 import ProductList from '../components/ProductList';
-
+import ProductListEmpty from '../components/ProductListEmpty';
 
 describe('ProductListContainer', () => {
 
@@ -11,7 +11,7 @@ describe('ProductListContainer', () => {
     const history = { push: jest.fn() }
     const products = [];
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <ProductListContainer history={history} dispatch={dispatchMock} products={products} />
     );
 
@@ -21,8 +21,10 @@ describe('ProductListContainer', () => {
     expect(history.push).toHaveBeenCalledTimes(1);
   });
 
-  it('Should render product list if path is not empty', () => {
-    const products = [{ id: '123', price: { amount: 1, decimals: 0 }}, { id: '223', price: { amount: 1, decimals: 0 } }];
+  it('Should render product list if products has items', () => {
+    const products = [
+      { id: '123', title: 'product 1', picture: '', state: 'new', free_shipping: true, price: { amount_label: '1', decimals_label: '0' }}, 
+      { id: '223', title: 'product 2', picture: '', state: 'used', free_shipping: true, price: { amount_label: '1', decimals_label: '0' } }];
     const wrapper = mount(
       <ProductListContainer products={[]} />
     );
@@ -31,8 +33,10 @@ describe('ProductListContainer', () => {
     wrapper.instance().forceUpdate();
     wrapper.update();
 
-    const component = wrapper.find(ProductList);
-    expect(component.length).toEqual(1);
+    const component1 = wrapper.find(ProductList);
+    expect(component1.length).toEqual(1);
+    const component2 = wrapper.find(ProductListEmpty);
+    expect(component2.length).toEqual(0);
   });
 
   it('Should not render product list if products is empty', () => {
@@ -44,7 +48,9 @@ describe('ProductListContainer', () => {
     wrapper.instance().forceUpdate();
     wrapper.update();
 
-    const component = wrapper.find(ProductList);
-    expect(component.length).toEqual(0);
+    const component1 = wrapper.find(ProductList);
+    expect(component1.length).toEqual(0);
+    const component2 = wrapper.find(ProductListEmpty);
+    expect(component2.length).toEqual(1);
   });
 });

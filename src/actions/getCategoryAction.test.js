@@ -20,7 +20,8 @@ describe('getCategoryAction', () => {
       .stub(request, 'get')
       .returns(Promise.resolve({ path }));
 
-    const expectedAction = { type: constants.BREADCRUMB_SUCCESS, path };
+    const expected1 = { type: constants.BREADCRUMB_START };
+    const expected2 = { type: constants.BREADCRUMB_SUCCESS, path };
 
     const id = '123';
     const store = mockStore({ });
@@ -28,7 +29,8 @@ describe('getCategoryAction', () => {
     return store.dispatch(getCategoryAction(id))
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).toEqual(expectedAction);
+        expect(actions[0]).toEqual(expected1);
+        expect(actions[1]).toEqual(expected2);
       });
   });
 
@@ -38,7 +40,8 @@ describe('getCategoryAction', () => {
       .stub(request, 'get')
       .returns(Promise.reject(error));
 
-    const expectedAction = { type: constants.BREADCRUMB_ERROR, error };
+    const expected1 = { type: constants.BREADCRUMB_START };
+    const expected2 = { type: constants.BREADCRUMB_ERROR, error };
 
     const id = '122';
     const store = mockStore({ products: [] });
@@ -46,7 +49,8 @@ describe('getCategoryAction', () => {
     return store.dispatch(getCategoryAction(id))
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).toEqual(expectedAction);
+        expect(actions[0]).toEqual(expected1);
+        expect(actions[1]).toEqual(expected2);
       });
   });
 });

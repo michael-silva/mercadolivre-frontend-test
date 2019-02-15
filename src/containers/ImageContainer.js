@@ -37,7 +37,7 @@ export class ImageContainer extends PureComponent {
     const imgProps = {...this.props};
     if (loading) {
         imgProps.src = '';
-        imgProps.className += ' -loading';
+        imgProps.className = (imgProps.className || '') + ' -loading';
     }
     // eslint-disable-next-line
     return <img {...imgProps} />;

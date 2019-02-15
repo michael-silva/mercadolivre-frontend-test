@@ -2,7 +2,7 @@ import { CONFIG } from '../constants';
 
 export class SEOService {
     getTitle(products, query) {
-        if (!products || !query) return '';
+        if (!products && !query) return '';
         if (products.length === 0 && query.length === 0) {
             return `${CONFIG.GLOBAL_TITLE}`;
         }
@@ -15,7 +15,7 @@ export class SEOService {
     }
 
     getDescription(products, query) {
-        if (!products || !query) return '';
+        if (!products && !query) return '';
         if (products.length === 0 && query.length === 0) {
             return `${CONFIG.DEFAULT_DESC}`;
         }
