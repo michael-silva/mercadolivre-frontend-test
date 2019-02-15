@@ -21,7 +21,8 @@ describe('SearchAction', () => {
       .stub(request, 'get')
       .returns(Promise.resolve({ items, categories }));
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_SUCCESS, items, categories };
+    const expected1 = { type: constants.PRODUCT_SEARCH_START };
+    const expected2 = { type: constants.PRODUCT_SEARCH_SUCCESS, items, categories };
 
     const query = 'test';
     const store = mockStore({ products: [] });
@@ -29,7 +30,8 @@ describe('SearchAction', () => {
     return store.dispatch(searchAction(query))
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).toEqual(expectedAction);
+        expect(actions[0]).toEqual(expected1);
+        expect(actions[1]).toEqual(expected2);
       });
   });
 
@@ -39,7 +41,8 @@ describe('SearchAction', () => {
       .stub(request, 'get')
       .returns(Promise.reject(error));
 
-    const expectedAction = { type: constants.PRODUCT_SEARCH_ERROR, error };
+    const expected1 = { type: constants.PRODUCT_SEARCH_START };
+    const expected2 = { type: constants.PRODUCT_SEARCH_ERROR, error };
 
     const query = 'test';
     const store = mockStore({ products: [] });
@@ -47,7 +50,8 @@ describe('SearchAction', () => {
     return store.dispatch(searchAction(query))
       .then(() => {
         const actions = store.getActions();
-        expect(actions[0]).toEqual(expectedAction);
+        expect(actions[0]).toEqual(expected1);
+        expect(actions[1]).toEqual(expected2);
       });
   });
 });

@@ -1,6 +1,11 @@
 @import '~flexboxgrid-sass';
 @import './Reset.scss';
 @import './Grid.scss';
+@import './Animations.scss';
+
+*, ::after, ::before {
+  box-sizing: border-box;
+}
 
 body {
   font-size: 16px;

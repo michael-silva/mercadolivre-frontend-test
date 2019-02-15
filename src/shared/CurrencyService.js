@@ -30,12 +30,12 @@ export class CurrencyService {
 
   formatThousand(num, separator) {
     const n = String(num),
-          p = n.indexOf('.')
+      p = n.indexOf('.')
     return n.replace(
-        /\d(?=(?:\d{3})+(?:\.|$))/g,
-        (m, i) => p < 0 || i < p ? `${m}${separator}` : m
+      /\d(?=(?:\d{3})+(?:\.|$))/g,
+      (m, i) => p < 0 || i < p ? `${m}${separator}` : m
     )
-}
+  }
 }
 
 const instance = new CurrencyService();

@@ -1,6 +1,10 @@
 import constants, { CONFIG } from '../constants';
 import request from 'request-promise';
 
+export const getProductStartAction = () => {
+  return { type: constants.PRODUCT_GET_START };
+}
+
 export const getProductSuccessAction = (item) => {
   return {
     type: constants.PRODUCT_GET_SUCCESS,
@@ -17,6 +21,7 @@ export const getProductErrorAction = (error) => {
 
 export const getProductActionAsync = (id) => {
   return (dispatch, getState) => {
+    dispatch(getProductStartAction());
     return request.get(`${CONFIG.API_URL}/api/items/${id}`, { json: true })
       .then(data => {
         const item = data.item;

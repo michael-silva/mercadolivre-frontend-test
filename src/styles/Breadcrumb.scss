@@ -3,6 +3,22 @@
 .breadcrumb-container {
   margin-bottom: -1rem;
   padding: $smMargin 0;
+
+  &.-loading {
+    position: relative;
+    width: 50%;
+    &::after {
+      @extend %shimmerEffect;
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 50%;
+      width: 100%;
+    }
+  }
+
   >.step {
     display: inline-block;
     color: $mlMediumGray;

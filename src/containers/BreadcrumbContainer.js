@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import getCategoryAction from '../actions/getCategoryAction';
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumb from '../components/Breadcrumb';
 
 export class BreadcrumbContainer extends Component {
   componentDidMount() {
@@ -10,26 +10,27 @@ export class BreadcrumbContainer extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.category !== this.props.category) {
-        this.categoryChanged();
+      this.categoryChanged();
     }
   }
 
   categoryChanged() {
     const { category, dispatch } = this.props;
     if (category) {
-        dispatch(getCategoryAction(category));
+      dispatch(getCategoryAction(category));
     }
   }
 
   render() {
-    const { path } = this.props;
-    return path.length > 0 ? <Breadcrumb path={path}></Breadcrumb> : <></>;
+    const { path, loading } = this.props;
+    return <Breadcrumb loading={loading} path={path}></Breadcrumb>;
   }
 }
 
 const mapStateToProps = state => ({
   category: state.products.categories[0],
   path: state.breadcrumb.path,
+  loading: !!state.products.fetching || !!state.products.searching || !!state.breadcrumb.fetching
 });
 
 

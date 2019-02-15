@@ -1,5 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import ImageContainer from '../containers/ImageContainer';
 
 import '../styles/ProductDetail.scss';
 
@@ -8,7 +9,7 @@ const ProductDetail = ({ product }) => (
     <div className="row row-block-6">
       <div className="col-sm-7">
         <div className="product-image">
-          <img className="image" src={product.picture} alt="Imagem do produto" />
+          <ImageContainer className="image" src={product.picture} alt={product.title} />
         </div>
       </div>
       <div className="col-sm-4">
@@ -26,7 +27,7 @@ const ProductDetail = ({ product }) => (
           <div className="header">
             <h1 className="title">Descrição do produto</h1>
           </div>
-          <p className="description" dangerouslySetInnerHTML={{__html: product.description}}></p>
+          <p className="description" dangerouslySetInnerHTML={{ __html: product.description }}></p>
         </div>
       </div>
     </div>
@@ -37,4 +38,4 @@ ProductDetail.propTypes = {
   product: PropTypes.object.isRequired,
 };
 
-export default ProductDetail;
+export default memo(ProductDetail);

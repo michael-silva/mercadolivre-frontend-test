@@ -1,67 +1,85 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { BreadcrumbContainer } from './BreadcrumbContainer';
-import Breadcrumb from '../components/Breadcrumb';
-
 
 describe('BreadcrumbContainer', () => {
-  
-  it('Should call action if category change', () => {
-    const category='temp';
-    const newCategory = 'temp 2';
+
+  it('Should call action when mount component', () => {
+    const category = 'temp';
     const path = [];
+    const loading = false;
     const dispatchMock = jest.fn();
 
-    const wrapper = mount(
-        <BreadcrumbContainer  category={category} path={path} dispatch={dispatchMock} />
+    const wrapper = shallow(
+      <BreadcrumbContainer loading={loading} category={category} path={path} dispatch={dispatchMock} />
     );
 
-    wrapper.setProps({ category: newCategory });
-    
-    expect(dispatchMock).toHaveBeenCalled();
-    expect(wrapper.instance().props.category).toEqual(newCategory);
-  });
-  
-  it('Should not call action if category not change', () => {
-    const category='temp';
-    const path = [];
-    const dispatchMock = jest.fn();
-
-    const wrapper = mount(
-        <BreadcrumbContainer  category={category} path={path} dispatch={dispatchMock} />
-    );
-
-    wrapper.setProps({ category });
-    
-    expect(dispatchMock).not.toHaveBeenCalled();
+    expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(wrapper.instance().props.category).toEqual(category);
   });
 
-  it('Should render breadcrumb if path is not empty', () => {
-    const category='temp';
-    const path = ['temp', 'temp 2'];
-    const wrapper = mount(
-      <BreadcrumbContainer  category={category} path={path} />
+  it('Should call action if category change', () => {
+    const category = 'temp';
+    const newCategory = 'temp 2';
+    const path = [];
+    const loading = false;
+    const dispatchMock = jest.fn();
+
+    const wrapper = shallow(
+      <BreadcrumbContainer loading={loading} category={category} path={path} dispatch={dispatchMock} />
     );
 
-    wrapper.instance().forceUpdate();
-    wrapper.update();
-    
-    const breadcrumbs = wrapper.find(Breadcrumb);
-    expect(breadcrumbs.length).toEqual(1);
+    wrapper.setProps({ category: newCategory });
+
+    expect(dispatchMock).toHaveBeenCalledTimes(2);
+    expect(wrapper.instance().props.category).toEqual(newCategory);
   });
 
-  it('Should not render breadcrumb if path is empty', () => {
-    const category='temp';
+  it('Should not call action if category not change', () => {
+    const category = 'temp';
     const path = [];
+    const loading = false;
+    const dispatchMock = jest.fn();
+
+    const wrapper = shallow(
+      <BreadcrumbContainer loading={loading} category={category} path={path} dispatch={dispatchMock} />
+    );
+
+    wrapper.setProps({ category });
+
+    expect(dispatchMock).toHaveBeenCalledTimes(1);
+    expect(wrapper.instance().props.category).toEqual(category);
+  });
+
+  it('Should render one item list <li> for each path step if not loading', () => {
+    const category = 'temp';
+    const loading = false;
+    const path = ['temp', 'temp 2'];
+    const dispatchMock = jest.fn();
     const wrapper = mount(
-      <BreadcrumbContainer  category={category} path={path} />
+      <BreadcrumbContainer loading={loading} category={category} path={path} dispatch={dispatchMock} />
     );
 
     wrapper.instance().forceUpdate();
     wrapper.update();
-    
-    const breadcrumbs = wrapper.find(Breadcrumb);
-    expect(breadcrumbs.length).toEqual(0);
+
+    const items = wrapper.find('li');
+    expect(items.length).toEqual(path.length);
+  });
+
+  it('Should render any one item list <li> if loading', () => {
+    const category = 'temp';
+    const loading = true;
+    const path = ['temp', 'temp 2'];
+    const dispatchMock = jest.fn();
+    const wrapper = mount(
+      <BreadcrumbContainer loading={loading} category={category} path={path} dispatch={dispatchMock} />
+    );
+
+    wrapper.instance().forceUpdate();
+    wrapper.update();
+
+    const items = wrapper.find('li');
+    expect(items.length).toEqual(0);
   });
 });

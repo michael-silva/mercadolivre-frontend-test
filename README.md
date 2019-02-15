@@ -25,6 +25,22 @@ Após instalar as dependências para rodar o projeto local execute:
 $ yarn dev
 ```
 
+## Server side rendering local
+
+Para testar o server side rendering primeiro é necesário criar o build do front com o seguinte comando:
+
+```
+$ yarn build
+```
+
+Depois é só iniciar o server local com o comando:
+```
+$ yarn server:local
+```
+
+*Obs.*: Desta forma a cada alteração detro da pasta src/ e necessário criar novamente o build.
+
+
 ## Testando
 Para rodar os testes de unidade execute:
 
@@ -48,12 +64,11 @@ $ yarn build
 
 ## Rodando o servidor em produção
 
-Crie as duas variaveis de ambiente a seguir
+Crie as variaveis de ambiente a seguir
 ```
 PORT: número da porta para rodar a aplicação
-PROD: booleano que indica se esta em ambiente de produção
 CACHE_TIME: número em segundos para cache da aplicação, valor padrão de 60 segundos
-API_URL: url para acesso da api, valor padrão para desenvolvimento é http://localhost:5000
+REACT_APP_API_URL: url para acesso da api
 ```
 
 e execute: 
@@ -63,7 +78,4 @@ yarn start
 ```
 
 ## Melhorias
-- Server side rendering para SEO
-- Maner estado da página ao navegar pelo historico do browser
-- Aplicar placeholder enquanto imagens carregam
-- Loading e Error state para todos os componentes
+- Migrar para React 17
