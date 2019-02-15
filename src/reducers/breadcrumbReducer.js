@@ -8,11 +8,11 @@ export default (state = initialState, action) => {
   const { path, error } = action;
   switch (action.type) {
     case constants.BREADCRUMB_START:
-      return  { ...initialState, fetching: true };
+      return { ...initialState, fetching: true };
     case constants.BREADCRUMB_SUCCESS:
-      return  { path };
+      return { path };
     case constants.BREADCRUMB_ERROR:
-      return { path, error  };
+      return { path, error };
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import sinon from 'sinon';
 
 const path = ['test', 'test'];
 
-const mockStore = configureMockStore([ thunk ]);
+const mockStore = configureMockStore([thunk]);
 
 describe('getCategoryAction', () => {
 
@@ -24,7 +24,7 @@ describe('getCategoryAction', () => {
     const expected2 = { type: constants.BREADCRUMB_SUCCESS, path };
 
     const id = '123';
-    const store = mockStore({ });
+    const store = mockStore({});
 
     return store.dispatch(getCategoryAction(id))
       .then(() => {
@@ -45,7 +45,7 @@ describe('getCategoryAction', () => {
 
     const id = '122';
     const store = mockStore({ products: [] });
-  
+
     return store.dispatch(getCategoryAction(id))
       .then(() => {
         const actions = store.getActions();

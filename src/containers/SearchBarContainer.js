@@ -1,10 +1,10 @@
 import QueryString from 'query-string';
-import React from "react";
+import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import searchAction from '../actions/searchAction';
 import changeQueryAction from '../actions/changeQueryAction';
-import SearchBar from "../components/SearchBar";
+import SearchBar from '../components/SearchBar';
 import ServerSideComponent from '../shared/ServerSideComponent';
 
 export class SearchBarContainer extends ServerSideComponent {
@@ -23,7 +23,7 @@ export class SearchBarContainer extends ServerSideComponent {
 
   handlePopState(event) {
     event.preventDefault();
-    this.fetchInitialData();  
+    this.fetchInitialData();
   }
 
   fetchInitialData() {
@@ -32,15 +32,15 @@ export class SearchBarContainer extends ServerSideComponent {
     const currentSearch = history.location.search;
     const params = QueryString.parse(currentSearch);
     const query = params.q || '';
-    if (query.length > 0 ) {
+    if (query.length > 0) {
       const { onChange, onSearch } = this.props;
       onChange(query)
       return onSearch(encodeURI(query));
     }
-    else if(lastSearch !== currentSearch) {
+    else if (lastSearch !== currentSearch) {
       this.props.onChange('');
     }
-    
+
     return Promise.resolve();
   }
 

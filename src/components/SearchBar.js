@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import loadingIcon from '../assets/loadingIcon.svg';
 import logo from '../assets/Logo_ML.png';
 import logo2x from '../assets/Logo_ML@2x.png.png';
@@ -17,14 +17,14 @@ const SearchBar = ({ query, loading, onSearch, onChange }) => (
         </div>
         <div className="col-xs-9 col-sm-9 search">
           <form className="search-form" onSubmit={onSearch}>
-            <input className="input" placeholder="Nunca deixe de procurar" value={query} onChange={onChange} autoFocus/>
-            {loading 
+            <input className="input" placeholder="Nunca deixe de procurar" value={query} onChange={onChange} autoFocus />
+            {loading
               ? <button disabled className="button">
-                  <img src={loadingIcon} className="icon" alt="carregando" />
-                </button>
+                <img src={loadingIcon} className="icon" alt="carregando" />
+              </button>
               : <button type="submit" className="button">
-                  <img src={searchIcon} srcSet={`${searchIcon2x} 2x`} className="icon" alt="Ícone de busca" />
-                </button>}
+                <img src={searchIcon} srcSet={`${searchIcon2x} 2x`} className="icon" alt="Ícone de busca" />
+              </button>}
           </form>
         </div>
       </div>

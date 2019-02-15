@@ -1,11 +1,11 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent } from 'react';
 
 export class ImageContainer extends PureComponent {
   constructor() {
-      super();
-      this.state = { loading: true };
+    super();
+    this.state = { loading: true };
   }
-  
+
   componentDidMount() {
     this.mounted = true;
     this.loadImage();
@@ -17,7 +17,7 @@ export class ImageContainer extends PureComponent {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.src !== this.props.src) {
-        this.loadImage();
+      this.loadImage();
     }
   }
 
@@ -34,10 +34,10 @@ export class ImageContainer extends PureComponent {
 
   render() {
     const { loading } = this.state;
-    const imgProps = {...this.props};
+    const imgProps = { ...this.props };
     if (loading) {
-        imgProps.src = '';
-        imgProps.className = (imgProps.className || '') + ' -loading';
+      imgProps.src = '';
+      imgProps.className = (imgProps.className || '') + ' -loading';
     }
     // eslint-disable-next-line
     return <img {...imgProps} />;

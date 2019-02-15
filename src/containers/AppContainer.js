@@ -1,5 +1,5 @@
-import { connect } from "react-redux";
-import App from "../components/App";
+import { connect } from 'react-redux';
+import App from '../components/App';
 import SEOService from '../shared/SEOService';
 
 const mapStateToProps = state => ({

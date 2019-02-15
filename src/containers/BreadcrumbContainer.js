@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import getCategoryAction from '../actions/getCategoryAction';
-import Breadcrumb from "../components/Breadcrumb";
+import Breadcrumb from '../components/Breadcrumb';
 
 export class BreadcrumbContainer extends Component {
   componentDidMount() {
@@ -10,14 +10,14 @@ export class BreadcrumbContainer extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.category !== this.props.category) {
-        this.categoryChanged();
+      this.categoryChanged();
     }
   }
 
   categoryChanged() {
     const { category, dispatch } = this.props;
     if (category) {
-        dispatch(getCategoryAction(category));
+      dispatch(getCategoryAction(category));
     }
   }
 

@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 
 import '../styles/Breadcrumb.scss';
 
@@ -8,7 +8,7 @@ const Breadcrumb = ({ path, loading }) => (
     {loading ? <></> : path.map((step) =>
       <li key={step} className="step">&nbsp;{step}&nbsp;</li>
     )}
-  </ul> 
+  </ul>
 );
 
 Breadcrumb.propTypes = {

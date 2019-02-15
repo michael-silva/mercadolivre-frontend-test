@@ -1,37 +1,37 @@
 import React from 'react';
-import { shallow, mount, render } from 'enzyme';
+import { mount } from 'enzyme';
 import ErrorBoundary from './ErrorBoundary';
 
 
 describe('ErrorBoundary', () => {
 
-    it('Should render the children if not occur any error', () => {
+  it('Should render the children if not occur any error', () => {
 
-        const Child = ({ title }) => <h1>{title.length}</h1>;
+    const Child = ({ title }) => <h1>{title.length}</h1>;
 
-        const wrapper = mount(
-            <ErrorBoundary>
-                <Child title="test" />
-            </ErrorBoundary>
-        );
+    const wrapper = mount(
+      <ErrorBoundary>
+        <Child title="test" />
+      </ErrorBoundary>
+    );
 
-        const children = wrapper.find(Child);
+    const children = wrapper.find(Child);
 
-        expect(children.length).toEqual(1);
-    });
+    expect(children.length).toEqual(1);
+  });
 
-    it('Should not render the children if ocurred an error', () => {
+  it('Should not render the children if ocurred an error', () => {
 
-        const Child = ({ title }) => <h1>{title.length}</h1>;
+    const Child = ({ title }) => <h1>{title.length}</h1>;
 
-        const wrapper = mount(
-            <ErrorBoundary>
-                <Child />
-            </ErrorBoundary>
-        );
+    const wrapper = mount(
+      <ErrorBoundary>
+        <Child />
+      </ErrorBoundary>
+    );
 
-        const children = wrapper.find(Child);
+    const children = wrapper.find(Child);
 
-        expect(children.length).toEqual(0);
-    });
+    expect(children.length).toEqual(0);
+  });
 });

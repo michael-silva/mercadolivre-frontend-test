@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import ImageContainer from '../containers/ImageContainer';
 
 import '../styles/ProductDetail.scss';
@@ -27,7 +27,7 @@ const ProductDetail = ({ product }) => (
           <div className="header">
             <h1 className="title">Descrição do produto</h1>
           </div>
-          <p className="description" dangerouslySetInnerHTML={{__html: product.description}}></p>
+          <p className="description" dangerouslySetInnerHTML={{ __html: product.description }}></p>
         </div>
       </div>
     </div>

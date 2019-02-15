@@ -1,6 +1,6 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
-import ProductItem from "../components/ProductItem";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
+import ProductItem from '../components/ProductItem';
 
 import '../styles/ProductList.scss';
 

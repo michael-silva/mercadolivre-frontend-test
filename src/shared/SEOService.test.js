@@ -17,7 +17,7 @@ describe('SEOService', () => {
     const query = '';
 
     const title = SEOService.getTitle(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).toContain(products[0].title);
   });
@@ -27,7 +27,7 @@ describe('SEOService', () => {
     const query = 'produto';
 
     const title = SEOService.getTitle(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).not.toContain(products[0].title);
     expect(title).not.toContain(products[1].title);
@@ -39,7 +39,7 @@ describe('SEOService', () => {
     const query = 'test';
 
     const title = SEOService.getTitle(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).toContain(query);
   });
@@ -58,7 +58,7 @@ describe('SEOService', () => {
     const query = '';
 
     const title = SEOService.getDescription(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).toContain(products[0].title);
   });
@@ -68,7 +68,7 @@ describe('SEOService', () => {
     const query = 'produto';
 
     const title = SEOService.getDescription(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).not.toContain(products[0].title);
     expect(title).not.toContain(products[1].title);
@@ -80,7 +80,7 @@ describe('SEOService', () => {
     const query = 'test';
 
     const title = SEOService.getDescription(products, query);
-    
+
     expect(title).toContain(CONFIG.GLOBAL_TITLE);
     expect(title).toContain(query);
   });

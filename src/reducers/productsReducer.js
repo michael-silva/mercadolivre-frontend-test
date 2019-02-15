@@ -9,15 +9,15 @@ export default (state = initialState, action) => {
   const { type, error, categories, items, item } = action;
   switch (type) {
     case constants.PRODUCT_GET_START:
-      return  { ...state, fetching: true };
+      return { ...state, fetching: true };
     case constants.PRODUCT_GET_SUCCESS:
-      return  { items: [ item ], categories: [ item.category ] };
+      return { items: [item], categories: [item.category] };
     case constants.PRODUCT_GET_ERROR:
-      return  { ...initialState, error };
+      return { ...initialState, error };
     case constants.PRODUCT_SEARCH_START:
-      return  { ...state, searching: true };
+      return { ...state, searching: true };
     case constants.PRODUCT_SEARCH_SUCCESS:
-      return  { items, categories };
+      return { items, categories };
     case constants.PRODUCT_SEARCH_ERROR:
       return { ...initialState, error };
     default:

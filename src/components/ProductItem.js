@@ -1,5 +1,5 @@
-import React, { memo } from "react";
-import PropTypes from "prop-types";
+import React, { memo } from 'react';
+import PropTypes from 'prop-types';
 import ImageContainer from '../containers/ImageContainer';
 import shippingIcon from '../assets/ic_shipping.png';
 import shippingIcon2x from '../assets/ic_shipping@2x.png.png';
@@ -14,7 +14,7 @@ const ProductItem = ({ product, onClick }) => (
     <div className="content">
       <h2 className="product-item-header">
         <span className="price">{product.price.amount_label} <span className="cents">{product.price.decimals_label}</span></span>
-        {product.free_shipping 
+        {product.free_shipping
           ? <span className="icon"><img className="image" src={shippingIcon} srcSet={`${shippingIcon2x} 2x`} alt="Entrega grátis" /></span>
           : <></>}
         <span className="state">{product.state}</span>
@@ -31,7 +31,7 @@ ProductItem.propTypes = {
     title: PropTypes.string.isRequired,
     state: PropTypes.string.isRequired,
     picture: PropTypes.string.isRequired,
-    price: PropTypes.shape({ 
+    price: PropTypes.shape({
       amount_label: PropTypes.string.isRequired,
       decimals_label: PropTypes.string.isRequired,
     }).isRequired,

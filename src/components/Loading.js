@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo } from 'react';
 import loadingIcon from '../assets/loadingIcon.svg';
 
 import '../styles/Loading.scss';

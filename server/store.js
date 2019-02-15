@@ -3,4 +3,4 @@ import thunk from 'redux-thunk';
 import reducers from '../src/reducers';
 
 export default (initialState) =>
-    createStore(reducers, initialState, applyMiddleware(thunk));
+  createStore(reducers, initialState, applyMiddleware(thunk));

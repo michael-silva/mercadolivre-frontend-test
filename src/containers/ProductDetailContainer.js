@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import getProductAction from '../actions/getProductAction';
-import ProductDetail from "../components/ProductDetail";
+import ProductDetail from '../components/ProductDetail';
 import ProductsService from '../shared/ProductsService';
 import ServerSideComponent from '../shared/ServerSideComponent';
 import LazyContainer from './LazyContainer';

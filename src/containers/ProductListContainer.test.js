@@ -16,14 +16,14 @@ describe('ProductListContainer', () => {
     );
 
     wrapper.instance().navigate({ id: '123' });
-    
+
     expect(dispatchMock).toHaveBeenCalledTimes(1);
     expect(history.push).toHaveBeenCalledTimes(1);
   });
 
   it('Should render product list if products has items', () => {
     const products = [
-      { id: '123', title: 'product 1', picture: '', state: 'new', free_shipping: true, price: { amount_label: '1', decimals_label: '0' }}, 
+      { id: '123', title: 'product 1', picture: '', state: 'new', free_shipping: true, price: { amount_label: '1', decimals_label: '0' } },
       { id: '223', title: 'product 2', picture: '', state: 'used', free_shipping: true, price: { amount_label: '1', decimals_label: '0' } }];
     const wrapper = mount(
       <ProductListContainer products={[]} />

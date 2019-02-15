@@ -7,7 +7,7 @@ import sinon from 'sinon';
 
 const item = { category: 'category' };
 
-const mockStore = configureMockStore([ thunk ]);
+const mockStore = configureMockStore([thunk]);
 
 describe('getProductAction', () => {
 
@@ -24,7 +24,7 @@ describe('getProductAction', () => {
     const expected2 = { type: constants.PRODUCT_GET_SUCCESS, item };
 
     const id = '123';
-    const store = mockStore({ });
+    const store = mockStore({});
 
     return store.dispatch(getProductAction(id))
       .then(() => {
@@ -45,7 +45,7 @@ describe('getProductAction', () => {
 
     const id = '122';
     const store = mockStore({ products: [] });
-  
+
     return store.dispatch(getProductAction(id))
       .then(() => {
         const actions = store.getActions();
